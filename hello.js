@@ -190,6 +190,7 @@ app.get('/search', async (req, res) => {
   if (!searchTerm) {
     return res.status(400).send('Search term is required.');
   }
+  console.log("Getting to search endpoint");
 
   try {
     const db = client.db('final');
@@ -212,7 +213,7 @@ app.get('/search', async (req, res) => {
         }
       }
     ]).toArray();
-
+    console.log("got search query, sending results as json");
     res.status(200).json(results);
   } catch (error) {
     console.error('Error fetching book search results:', error);
