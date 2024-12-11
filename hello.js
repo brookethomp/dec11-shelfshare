@@ -49,13 +49,12 @@ app.post('/login', async (req, res) => {
   res.status(200).json({ message: 'Login successful', user: { username: user.username, name: user.name, bio: user.bio } });
 });
 
-// Update profile endpoint
 app.post('/update-profile', async (req, res) => {
-  const { username, name, bio, book } = req.body;
+  const { username, name, bio, books, address } = req.body;
 
   const result = await usersCollection.updateOne(
     { username },
-    { $set: { name, bio, book } }
+    { $set: { name, bio, books, address } }
   );
 
   if (result.modifiedCount > 0) {
