@@ -296,7 +296,8 @@
                     const nearbyUsers = await response.json();
             
                     if (response.ok) {
-                        displayNearbyUsers(nearbyUsers);
+                        displayNearbyUsers(nearbyUsers); // Display users in the UI
+                        addUserMarkers(nearbyUsers);    // Add markers for users on the map
                     } else {
                         alert('Error fetching nearby users.');
                     }
@@ -305,6 +306,7 @@
                     alert('Error fetching nearby users.');
                 }
             }
+
             
             function displayNearbyUsers(users) {
                 const nearbyLoc = document.getElementById("nearbyLoc");
@@ -327,8 +329,15 @@
                     nearbyLoc.innerHTML += '<p>No nearby SwapSpots found.</p>';
                 }
             }
-
-                
+            function addUserMarkers(users) {
+                users.forEach(user => {
+                    const marker = L.marker([user.location.coordinates[1], user.location.coordinates[0]], { icon: bookIcon })
+                        .bindPopup(`<strong>${user.name}</strong><br>${user.address}<br>Books:<ul>${user.books.map(book => `<li>${book}</li>`).join('')}</ul>`)
+                        .addTo(map);
+                    markers.push(marker);
+                });
+            }
+            
                 //let nearbyLocations = getNearbyLocations();
 
                 //nearbyLocations
