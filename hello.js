@@ -34,6 +34,23 @@ app.get('/map.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'map.html'));
 });
 
+app.get('/api/mapPage', async function (req, res) {
+    try {
+        await client.connect();
+
+        const dbo = client.db("final");
+        const collection = dbo.collection('users');
+
+        const books = await collection.find().toArray();
+        res.json(books);
+    } catch (error) {
+        console.error('Error fetching books:', error);
+        res.status(500).send('Internal Server Error');
+    } finally {
+        await client.close();
+    }
+});
+
 // Registration endpoint
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
