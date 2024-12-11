@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>ShelfShare | Profile</title>
-        <link rel="icon" type="image/x-icon" href="icon.png"> <!--<link rel="icon" type="image/x-icon" href="../icon.png">-->
-        <link rel="stylesheet" href="style.css"/> <!--<link rel="stylesheet" href="../style.css"/>-->
+        <link rel="icon" type="image/x-icon" href="../icon.png">
+        <link rel="stylesheet" href="../style.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style type="text/css">
             .content {
@@ -117,7 +117,7 @@
         </style>
 
         <!-- Header -->
-        <script src="header.js"></script> <!--<script src="../header.js"></script>-->
+        <script src="../header.js"></script>
     </head>
 
     <body>
@@ -127,7 +127,7 @@
                 <div id="profileDetails">
                     <p><strong>Name:</strong> <span id="viewProfileName"></span></p>
                     <p><strong>About You:</strong> <span id="viewProfileBio"></span></p>
-                    <p><strong>Favorite Genres:</strong></p>
+                    <p><strong>Address:</strong> <span id="viewProfileAddress"></span></p>
                     <p><strong>Your Shelf:</strong></p>
                     <ul id="viewProfileBooks"></ul>
                 </div>
@@ -141,45 +141,18 @@
                 <h1>Edit Your Profile</h1>
     
                 <!-- Name -->
-                <label for="name"><strong>Name:</strong></label>
+                <label><strong>Name:</strong></label>
                 <input type="text" id="editProfileName" placeholder="Enter your name" required>
                 <br><br>
     
                 <!-- Bio -->
-                <label for="bio"><strong>About You:</strong></label><br>
+                <label><strong>About You:</strong></label><br>
                 <textarea id="editProfileBio" rows="4" cols="50" placeholder="Tell us a little about yourself..."></textarea>
                 <br><br>
-    
-                <!-- Favorite Genres -->
-                <label for="genres"><strong>Favorite Book Genres:</strong></label>
-                <br>
-                <input type="checkbox" id="genre1" value="fiction" name="genres">
-                <label for="genre1">Fiction</label>
-                <br>
-                <input type="checkbox" id="genre2" value="nonfiction" name="genres">
-                <label for="genre2">Non-fiction</label>
-                <br>
-                <input type="checkbox" id="genre3" value="mystery" name="genres">
-                <label for="genre3">Mystery</label>
-                <br>
-                <input type="checkbox" id="genre4" value="fantasy" name="genres">
-                <label for="genre4">Fantasy</label>
-                <br>
-                <input type="checkbox" id="genre5" value="sciencefiction" name="genres">
-                <label for="genre5">Science Fiction</label>
-                <br>
-                <input type="checkbox" id="genre6" value="romance" name="genres">
-                <label for="genre6">Romance</label>
-                <br>
-                <input type="checkbox" id="genre7" value="thriller" name="genres">
-                <label for="genre7">Thriller</label>
-                <br>
-                <input type="checkbox" id="genre8" value="biography" name="genres">
-                <label for="genre8">Biography</label>
-                <br>
-                <input type="checkbox" id="genre9" value="history" name="genres">
-                <label for="genre9">History</label>
-                <br><br>
+
+                <!-- Address -->
+                <label><strong>Address:</strong></label><br>
+                <input type="text" id="editProfileAddress" placeholder="Enter your address">
     
                 <!-- Shelf -->
                 <label for="shelf"><strong>Your Shelf:</strong></label><br>
@@ -195,7 +168,7 @@
         </div>
 
         <!-- Footer -->
-        <script src="footer.js"></script> <!--<script src="../footer.js"></script>-->
+        <script src="../footer.js"></script>
 
         <script>
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
