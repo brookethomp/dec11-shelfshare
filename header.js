@@ -8,13 +8,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 <div class="navbar">
                     <ul>
                         <li>
-                            <form action="https://echenjones.github.io/shelfshare/find.html" id="search"> <!-- May change page name -->
+                            <form action="https://brookethomp.github.io/dec11-shelfshare/public/find.html" id="search"> <!-- May change page name -->
                                 <input type="text" placeholder="Search books" name="search">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </li>
-                        <li><a href="https://echenjones.github.io/shelfshare/subscription.html">Subscriptions</a></li>
-                        <li><strong><a href="https://echenjones.github.io/shelfshare/login.html">Log In</a></strong></li>
+                        <li><a href="https://brookethomp.github.io/dec11-shelfshare/public/subscription.html">Subscriptions</a></li>
+                        <li><strong><a href="https://brookethomp.github.io/dec11-shelfshare/public/login.html">Log In</a></strong></li>
                     </ul>
                 </div>
                 <div style="min-width: 10px"></div>
@@ -26,10 +26,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 <div></div>
                 <div class="navbar">
                     <ul>
-                        <li><a href="https://echenjones.github.io/shelfshare/about.html">About</a></li>
-                        <li><a href="https://echenjones.github.io/shelfshare/map.html">SwapSpots</a></li>
-                        <li><a href="https://echenjones.github.io/shelfshare/faq.html">FAQ</a></li>
-                        <li><a href="https://echenjones.github.io/shelfshare/contact.html">Contact</a></li>
+                        <li><a href="https://brookethomp.github.io/dec11-shelfshare/public/about.html">About</a></li>
+                        <li><a href="https://brookethomp.github.io/dec11-shelfshare/public/map.html">SwapSpots</a></li>
+                        <li><a href="https://brookethomp.github.io/dec11-shelfshare/public/faq.html">FAQ</a></li>
+                        <li><a href="https://brookethomp.github.io/dec11-shelfshare/public/contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="hamburger"> <!-- Hamburger menu -->
@@ -42,21 +42,21 @@ document.addEventListener("DOMContentLoaded", function() {
             
             <!-- Expandable menu -->
             <div class="menu" id="menu">
-                <a href="https://echenjones.github.io/shelfshare/about.html">About</a>
+                <a href="https://brookethomp.github.io/dec11-shelfshare/public/about.html">About</a>
                 <br>
-                <a href="https://echenjones.github.io/shelfshare/map.html">SwapSpots</a>
+                <a href="https://brookethomp.github.io/dec11-shelfshare/public/map.html">SwapSpots</a>
                 <br>
-                <a href="https://echenjones.github.io/shelfshare/faq.html">FAQ</a>
+                <a href="https://brookethomp.github.io/dec11-shelfshare/public/faq.html">FAQ</a>
                 <br>
-                <a href="https://echenjones.github.io/shelfshare/contact.html">Contact</a>
+                <a href="https://brookethomp.github.io/dec11-shelfshare/public/contact.html">Contact</a>
                 <br>
-                <a href="https://echenjones.github.io/shelfshare/subscription.html">Subscriptions</a>
+                <a href="https://brookethomp.github.io/dec11-shelfshare/public/subscription.html">Subscriptions</a>
                 <br>
-                <a href="https://echenjones.github.io/shelfshare/login.html">Log In</a>
+                <a href="https://brookethomp.github.io/dec11-shelfshare/public/login.html">Log In</a>
                 <br>
-                <a href="https://echenjones.github.io/shelfshare/my-profile.html">My Profile</a>
+                <a href="https://brookethomp.github.io/dec11-shelfshare/public/my-profile.html">My Profile</a>
                 <br>
-                <form action="https://echenjones.github.io/shelfshare/find.html" id="search"> <!-- May change page name -->
+                <form action="https://brookethomp.github.io/dec11-shelfshare/public/find.html" id="search"> <!-- May change page name -->
                     <input type="text" placeholder="Search books" name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
