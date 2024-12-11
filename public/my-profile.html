@@ -73,34 +73,40 @@
             document.getElementById('editProfileBio').value = currentUser.bio || '';
         }
 
+        // Update profile data
         async function updateProfile() {
-            const name = document.getElementById('editProfileName').value;
-            const bio = document.getElementById('editProfileBio').value;
-            const book = document.getElementById('editProfileBooks').value;
-
-            const response = await fetch('/update-profile', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username: currentUser.username, name, bio, books: book }),
-            });
-            if (response.ok) {
-                currentUser.name = name;
-                currentUser.bio = bio;
-                currentUser.books = book;
-                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                showProfileView();
-            } else {
-                alert('Failed to update profile');
-            }
+          const name = document.getElementById('editProfileName').value;
+          const bio = document.getElementById('editProfileBio').value;
+          const books = document.getElementById('editProfileBooks').value.split(',').map(b => b.trim());
+          const address = document.getElementById('editProfileAddress').value;
+        
+          const response = await fetch('/update-profile', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: currentUser.username, name, bio, books, address }),
+          });
+        
+          if (response.ok) {
+            currentUser.name = name;
+            currentUser.bio = bio;
+            currentUser.books = books;
+            currentUser.address = address;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            showProfileView();
+          } else {
+            alert('Failed to update profile');
+          }
         }
-
-        function showProfileView() {
-            document.getElementById('profileEdit').style.display = 'none';
-            document.getElementById('profileView').style.display = 'block';
-
-            document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
-            document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
-            document.getElementById('viewProfileBooks').innerText = currentUser.bio || 'No books set';
+        
+        // Populate edit fields
+        function showEditProfile() {
+          document.getElementById('profileView').style.display = 'none';
+          document.getElementById('profileEdit').style.display = 'block';
+        
+          document.getElementById('editProfileName').value = currentUser.name || '';
+          document.getElementById('editProfileBio').value = currentUser.bio || '';
+          document.getElementById('editProfileBooks').value = currentUser.books?.join(', ') || '';
+          document.getElementById('editProfileAddress').value = currentUser.address || '';
         }
     </script>
     <script src="footer.js"></script>
