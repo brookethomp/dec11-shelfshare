@@ -43,6 +43,7 @@
             }
 
             #map {
+                z-index: 0;
                 height: 500px;
                 width: 90%;
                 margin-bottom: 20px;
@@ -111,21 +112,12 @@
         <script>
         //leaflet creating map
             //leaflet map centered at tufts
-            //var map = L.map('map').setView([42.4, -71.15], 14);
+            var map = L.map('map').setView([42.4, -71.15], 14);
 
             // put map look onto map
-           // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            //    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            //}).addTo(map);
-
-document.addEventListener('DOMContentLoaded', () => {
-    var map = L.map('map').setView([42.4, -71.15], 14);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-});
-
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
 
             //book swap locations for now: should gotten from database later along with books in location
             var swapLocations = [
@@ -291,61 +283,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 } ).addTo(map);
             }
 
-            async function findNearbyLocations() {
-                if (!locSelected) {
-                    alert("You need to select a location.");
-                    return;
-                }
-            
-                const radius = document.getElementById("radius").value;
-            
-                try {
-                    const response = await fetch(`/get-nearby-users?lat=${locSelected.lat}&lng=${locSelected.lng}&radius=${radius}`);
-                    const nearbyUsers = await response.json();
-            
-                    if (response.ok) {
-                        displayNearbyUsers(nearbyUsers); // Display users in the UI
-                        addUserMarkers(nearbyUsers);    // Add markers for users on the map
-                    } else {
-                        alert('Error fetching nearby users.');
-                    }
-                } catch (error) {
-                    console.error('Error fetching nearby users:', error);
-                    alert('Error fetching nearby users.');
-                }
-            }
-
-            
-            function displayNearbyUsers(users) {
-                const nearbyLoc = document.getElementById("nearbyLoc");
-                nearbyLoc.innerHTML = '<h2>Nearby SwapSpots:</h2>';
-            
-                users.forEach(user => {
-                    nearbyLoc.innerHTML += `
-                        <div>
-                            <strong>${user.name}</strong><br>
-                            Address: ${user.address}<br>
-                            Books:<br>
-                            <ul>${user.books.map(book => `<li>${book}</li>`).join('')}</ul>
-                            Distance: ${(user.distance / 1609.34).toFixed(2)} miles
-                        </div>
-                        <hr>
-                    `;
-                });
-            
-                if (users.length === 0) {
-                    nearbyLoc.innerHTML += '<p>No nearby SwapSpots found.</p>';
-                }
-            }
-            function addUserMarkers(users) {
-                users.forEach(user => {
-                    const marker = L.marker([user.location.coordinates[1], user.location.coordinates[0]], { icon: bookIcon })
-                        .bindPopup(`<strong>${user.name}</strong><br>${user.address}<br>Books:<ul>${user.books.map(book => `<li>${book}</li>`).join('')}</ul>`)
-                        .addTo(map);
-                    markers.push(marker);
-                });
-            }
-            
+            function findNearbyLocations() {
+                // if (!locSelected) {
+                //     alert("You need to select a location.");
+                //     return;
+                // }
+                
                 //let nearbyLocations = getNearbyLocations();
 
                 //nearbyLocations
