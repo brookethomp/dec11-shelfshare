@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <br>
                 <a href="https://brookethomp.github.io/dec11-shelfshare/public/login.html">Log In</a>
                 <br>
-                <a href="https://brookethomp.github.io/dec11-shelfshare/public/my-profile.html">My Profile</a>
+                <a href="https://shelfshare1-fc7cf721ef64.herokuapp.com/my-profile.html">My Profile</a>
                 <br>
                 <a href="https://brookethomp.github.io/dec11-shelfshare">Home</a>
                 <br>
