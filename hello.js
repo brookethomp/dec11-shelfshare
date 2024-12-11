@@ -69,6 +69,47 @@ app.post('/update-profile', async (req, res) => {
   }
 });
 
+app.get('/get-nearby-users', async (req, res) => {
+    const { lat, lng, radius } = req.query;
+
+    if (!lat || !lng || !radius) {
+        return res.status(400).send('Missing latitude, longitude, or radius.');
+    }
+
+    const maxDistance = parseFloat(radius) * 1609.34; // Convert miles to meters
+
+    try {
+        const nearbyUsers = await usersCollection.aggregate([
+            {
+                $geoNear: {
+                    near: {
+                        type: "Point",
+                        coordinates: [parseFloat(lng), parseFloat(lat)]
+                    },
+                    distanceField: "distance",
+                    maxDistance: maxDistance,
+                    spherical: true
+                }
+            },
+            {
+                $project: {
+                    username: 1,
+                    name: 1,
+                    books: 1,
+                    address: 1,
+                    distance: 1
+                }
+            }
+        ]).toArray();
+
+        res.status(200).json(nearbyUsers);
+    } catch (error) {
+        console.error('Error fetching nearby users:', error);
+        res.status(500).send('An error occurred while fetching nearby users.');
+    }
+});
+
+
 // Search endpoint
 app.get('/search', async (req, res) => {
   const searchTerm = req.query.search;
