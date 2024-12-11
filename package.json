@@ -1,0 +1,25 @@
+{
+    "name": "example app",
+    "version": "1.0.0",
+    "description": "node app ",
+    "main": "hello.js",
+    "scripts": {
+        "start": "node hello.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://shelfshare1-fc7cf721ef64.herokuapp.com/"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": ""
+    },
+    "homepage": "",
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "body-parser": "^1.20.3",
+        "express": "^4.21.2",
+        "mongodb": "^6.11.0"
+    }
+}
