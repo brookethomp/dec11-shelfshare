@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <div class="navbar">
                     <ul>
                         <li><a href="https://brookethomp.github.io/dec11-shelfshare/public/about.html">About</a></li>
-                        <li><a href="https://brookethomp.github.io/dec11-shelfshare/public/map.html">SwapSpots</a></li>
+                        <li><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/map.html">SwapSpots</a></li>
                         <li><a href="https://brookethomp.github.io/dec11-shelfshare/public/faq.html">FAQ</a></li>
                         <li><a href="https://brookethomp.github.io/dec11-shelfshare/public/contact.html">Contact</a></li>
                     </ul>
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <div class="menu" id="menu">
                 <a href="https://brookethomp.github.io/dec11-shelfshare/public/about.html">About</a>
                 <br>
-                <a href="https://brookethomp.github.io/dec11-shelfshare/public/map.html">SwapSpots</a>
+                <a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/map.html">SwapSpots</a>
                 <br>
                 <a href="https://brookethomp.github.io/dec11-shelfshare/public/faq.html">FAQ</a>
                 <br>
