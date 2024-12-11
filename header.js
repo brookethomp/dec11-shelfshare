@@ -81,9 +81,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // Check if user is logged in
     if (!currentUser) {
         document.getElementById('loginProfile1').innerText = "Log In";
-        document.getElementById('loginProfile1').href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/";
+        document.getElementById('loginProfile1').href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html";
         document.getElementById('loginProfile2').innerText = "Log In";
-        document.getElementById('loginProfile2').href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/";
+        document.getElementById('loginProfile2').href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html";
     }
     else { 
         document.getElementById('loginProfile1').innerText = "Profile";
