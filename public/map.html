@@ -121,47 +121,59 @@
                 fetchSwapLocations();
             });
 
-            async function fetchSwapLocations() {
-                try {
-                    const response = await fetch('/get-swap-locations');
-                    const data = await response.json();
+async function fetchSwapLocations() {
+    if (!locSelected) {
+        alert("Please select a location first.");
+        return;
+    }
 
-                    if (response.ok) {
-                        swapLocations = data.map(user => ({
-                            name: user.name,
-                            books: user.books,
-                            lat: user.location.coordinates[1], // Latitude
-                            lng: user.location.coordinates[0], // Longitude
-                        }));
-                        addSwapLocationsToMap();
-                    } else {
-                        console.error('Failed to fetch swap locations:', response.statusText);
-                    }
-                } catch (error) {
-                    console.error('Error fetching swap locations:', error);
-                }
-            }
+    const radius = document.getElementById("radius").value;
 
-            function addSwapLocationsToMap() {
-                const bookIcon = L.icon({
-                    iconUrl: 'bookMarker.png',
-                    iconSize: [55, 55],
-                    iconAnchor: [25, 42],
-                    popupAnchor: [1, -42]
-                });
+    try {
+        const response = await fetch(`/get-swap-locations?lat=${locSelected.lat}&lng=${locSelected.lng}&radius=${radius}`);
+        const data = await response.json();
 
-                swapLocations.forEach(function(location) {
-                    let booksHere = "<ul>";
-                    location.books.forEach(function(book) {
-                        booksHere += "<li>" + book + "</li>";
-                    });
-                    booksHere += "</ul>";
+        if (response.ok) {
+            swapLocations = data.map(user => ({
+                name: user.name,
+                books: user.books,
+                lat: user.location.coordinates[1], // Latitude
+                lng: user.location.coordinates[0], // Longitude
+                distance: user.distance // Distance in meters
+            }));
+            addSwapLocationsToMap();
+        } else {
+            console.error('Failed to fetch swap locations:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching swap locations:', error);
+    }
+}
 
-                    L.marker([location.lat, location.lng], { icon: bookIcon })
-                        .bindPopup("<h3>" + location.name + "</h3>" + booksHere)
-                        .addTo(map);
-                });
-            }
+
+function addSwapLocationsToMap() {
+    const bookIcon = L.icon({
+        iconUrl: 'bookMarker.png',
+        iconSize: [55, 55],
+        iconAnchor: [25, 42],
+        popupAnchor: [1, -42]
+    });
+
+    swapLocations.forEach(function(location) {
+        let booksHere = "<ul>";
+        location.books.forEach(function(book) {
+            booksHere += "<li>" + book + "</li>";
+        });
+        booksHere += "</ul>";
+
+        L.marker([location.lat, location.lng], { icon: bookIcon })
+            .bindPopup(`<h3>${location.name}</h3>
+                        <p>Distance: ${(location.distance / 1609.34).toFixed(2)} miles</p>
+                        <h4>Books:</h4>${booksHere}`)
+            .addTo(map);
+    });
+}
+
 
             function getLocation() {
                 const address = document.getElementById("address").value;
