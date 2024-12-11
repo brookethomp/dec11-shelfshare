@@ -1,2 +1,6 @@
-RewriteEngine On
 ErrorDocument 404 /public/404.html
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /public/404.html [L]
