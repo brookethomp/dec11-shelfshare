@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             </form>
                         </li>
                         <li><a href="https://brookethomp.github.io/dec11-shelfshare/public/subscription.html">Subscriptions</a></li>
-                        <li><strong><a href="https://brookethomp.github.io/dec11-shelfshare/public/login.html">Log In</a></strong></li>
+                        <li><strong><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/l">Log In</a></strong></li>
                     </ul>
                 </div>
                 <div style="min-width: 10px"></div>
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <!-- Navigation bar -->
             <div class="header">
                 <div style="min-width: 10px;"></div>
-                <a href="https://echenjones.github.io/shelfshare"><img src="logo.png" alt="Logo"></a>
+                <a href="https://brookethomp.github.io/dec11-shelfshare"><img src="logo.png" alt="Logo"></a>
                 <div></div>
                 <div class="navbar">
                     <ul>
