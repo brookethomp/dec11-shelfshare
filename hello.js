@@ -52,19 +52,22 @@ app.post('/login', async (req, res) => {
 app.post('/update-profile', async (req, res) => {
   const { username, name, bio, books, address } = req.body;
 
-  const result = await usersCollection.updateOne(
-    { username },
-    { $set: { name, bio, books, address } }
-  );
+  try {
+    const result = await usersCollection.updateOne(
+      { username }, // Find user by username
+      { $set: { name, bio, books, address } } // Update all fields
+    );
 
-  if (result.modifiedCount > 0) {
-    res.status(200).send('Profile updated successfully.');
-  } else {
-    res.status(400).send('Failed to update profile.');
+    if (result.modifiedCount > 0) {
+      res.status(200).send('Profile updated successfully.');
+    } else {
+      res.status(400).send('Failed to update profile.');
+    }
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    res.status(500).send('An error occurred while updating the profile.');
   }
 });
-
-
 
 // Search endpoint
 app.get('/search', async (req, res) => {
