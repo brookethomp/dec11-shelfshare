@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="description" content="ShelfShare is a community-based platform that allows local book lovers to easily exchange books with each other through a flexible subscription model, promoting affordable reading and sustainability.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Login | ShelfShare</title>
@@ -9,96 +10,44 @@
         <link rel="stylesheet" href="style.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- For hamburger and social media icons -->
         <style type="text/css">
-            body {
-                margin: 0;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-                font-family: "Avenir", Arial, sans-serif;
-                background-color: #F4E1C1; /* Soft tan background */
-            }
-
-            .container {
-                display: flex;
-                flex-direction: column;
-                gap: 20px; /* Adds space between the two boxes */
-                align-items: center;
-                max-width: 500px;
-                width: 100%;
-            }
-
             .content {
-                width: 100%;
-                padding: 30px;
-                background-color: #FFFFFF; /* White box for contrast */
-                border-radius: 10px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                padding: 20px 20% 50px 20%;
+                text-align: justify;
+                line-height: 2;
+            }
+            .content h1 {
+                padding-top: 20px;
+                padding-bottom: 20px;
                 text-align: center;
-            }
-
-            .content h3 {
-                font-size: 20px;
-                color: #3A7CA5;
-                margin-bottom: 10px;
-            }
-
-            .content input {
-                width: 100%;
-                padding: 10px;
-                margin: 10px 0;
-                border: 1px solid #CFCFCF;
-                border-radius: 5px;
-                font-size: 16px;
-            }
-
-            .content button {
-                width: 100%;
-                padding: 10px;
-                background-color: #3A7CA5;
-                color: #FFFFFF;
-                border: none;
-                border-radius: 5px;
-                font-size: 18px;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-            }
-
-            .content button:hover {
-                background-color: #2A5A7F;
-            }
-
-            p {
-                font-size: 14px;
-                color: #6E6E6E;
+                line-height: 1.2;
             }
 
             @media (max-width: 600px) {
-                .container {
-                    width: 90%;
+                .content {
+                    padding: 20px 50px 20px 50px;
                 }
             }
         </style>
-     <script src="header.js"></script>
+
+        <!-- Header -->
+        <script src="header.js"></script>
     </head>
 
 <body>
-    <div class="container">
-        <!-- Login Box -->
-        <div class="content">
-            <h3>Login</h3>
-            <input type="text" id="loginUsername" placeholder="Username">
-            <input type="password" id="loginPassword" placeholder="Password">
-            <button onclick="login()">Login</button>
-        </div>
-
-        <!-- Register Box -->
-        <div class="content">
+    <script src="header.js"></script>
+    
+    <div class="content">
+        <h2>Welcome to ShelfShare</h2>
+        <div id="loginForm">
             <h3>Register</h3>
             <input type="text" id="regUsername" placeholder="Username">
             <input type="password" id="regPassword" placeholder="Password">
             <button onclick="register()">Register</button>
+
+            <h3>Login</h3>
+            <input type="text" id="loginUsername" placeholder="Username">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button onclick="login()">Login</button>
         </div>
     </div>
 
@@ -128,7 +77,7 @@
 
             if (response.ok) {
                 localStorage.setItem('currentUser', JSON.stringify(data.user));
-                window.location.href = 'profile.html';
+                window.location.href = 'my-profile.html';
             } else {
                 alert(data.message || 'Login failed');
             }
