@@ -19,21 +19,43 @@
     <!-- Footer -->
     <script src="../footer.js"></script>
     
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Get the URL query string
-            const params = new URLSearchParams(window.location.search);
-            // Get the 'search' parameter
-            const searchQuery = params.get("search");
-            // Select the div to display the results
-            const resultsDiv = document.getElementById("search-results");
-            // Display the search phrase if it exists
-            if (searchQuery) {
-                resultsDiv.textContent = `Showing results for "${searchQuery}"`;
-            } else {
-                resultsDiv.textContent = "No search term provided.";
-            }
-        });
-    </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const params = new URLSearchParams(window.location.search);
+        const searchQuery = params.get("search");
+        const resultsDiv = document.getElementById("search-results");
+
+        if (searchQuery) {
+            fetch(`/search?search=${encodeURIComponent(searchQuery)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        resultsDiv.innerHTML = `<h2>Results for "${searchQuery}"</h2>`;
+                        const resultList = document.createElement("ul");
+
+                        data.forEach(user => {
+                            const userDiv = document.createElement("div");
+                            userDiv.classList.add("user-results");
+                            userDiv.innerHTML = `
+                                <h3>${user.name || user.username}</h3>
+                                <ul>
+                                    ${user.books.map(book => `<li>${book}</li>`).join('')}
+                                </ul>
+                            `;
+                            resultsDiv.appendChild(userDiv);
+                        });
+                    } else {
+                        resultsDiv.textContent = `No books found matching "${searchQuery}".`;
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching search results:", error);
+                    resultsDiv.textContent = "An error occurred while fetching search results.";
+                });
+        } else {
+            resultsDiv.textContent = "No search term provided.";
+        }
+    });
+</script>
 </body>
 </html>
