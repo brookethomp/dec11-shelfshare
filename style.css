@@ -112,9 +112,9 @@
     margin-top: 170px;
 }
 .footer {
-    position: fixed;
+    box-sizing: border-box;
+    position: static;
     width: 100%;
-    bottom: 0;
     margin-top: 50px;
     padding: 20px 40px;
     background-color: #3A7CA5;
