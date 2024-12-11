@@ -4,9 +4,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Profile | ShelfShare</title>
-        <link rel="icon" type="image/x-icon" href="icon.png">
-        <link rel="stylesheet" href="style.css"/>
+        <title>ShelfShare | Profile</title>
+        <link rel="icon" type="image/x-icon" href="../icon.png">
+        <link rel="stylesheet" href="../style.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- For hamburger and social media icons -->
         <style type="text/css">
             .content {
@@ -29,13 +29,11 @@
         </style>
 
         <!-- Header -->
-        <script src="header.js"></script>
+        <script src="../header.js"></script>
     </head>
 
 <body>
-    <script src="header.js"></script>
-    
-    <div class="content">
+   <div class="content">
         <div id="profileView">
             <h2>Your Profile</h2>
             <p><strong>Name:</strong> <span id="viewProfileName"></span></p>
@@ -57,6 +55,9 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <script src="footer.js"></script>
+    
     <script>
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -81,7 +82,6 @@
                 booksList.appendChild(li);
             });
         });
-
 
         // Display profile data
         function showProfileView() {
@@ -140,6 +140,5 @@
           }
         }
     </script>
-    <script src="footer.js"></script>
 </body>
 </html>
