@@ -26,7 +26,7 @@
         const resultsDiv = document.getElementById("search-results");
 
         if (searchQuery) {
-            fetch(`/search?search=${encodeURIComponent(searchQuery)}`)
+            fetch(`https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/search?search=${encodeURIComponent(searchQuery)}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.length > 0) {
