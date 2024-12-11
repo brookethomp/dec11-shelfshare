@@ -1,1 +1,2 @@
+RewriteEngine On
 ErrorDocument 404 /public/404.html
