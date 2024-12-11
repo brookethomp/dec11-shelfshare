@@ -104,18 +104,40 @@ app.get('/get-nearby-users', async (req, res) => {
     }
 });
 app.get('/get-swap-locations', async (req, res) => {
+    const { lat, lng, radius } = req.query;
+
+    if (!lat || !lng || !radius) {
+        return res.status(400).send('Latitude, longitude, and radius are required.');
+    }
+
     try {
-        const users = await usersCollection.find(
-            { location: { $exists: true } }, // Ensure users have a location field
-            { projection: { name: 1, books: 1, location: 1, address: 1 } }
-        ).toArray();
+        const users = await usersCollection.aggregate([
+            {
+                $geoNear: {
+                    near: { type: "Point", coordinates: [parseFloat(lng), parseFloat(lat)] },
+                    distanceField: "distance",
+                    maxDistance: parseFloat(radius) * 1609.34, // Convert miles to meters
+                    spherical: true
+                }
+            },
+            {
+                $project: {
+                    username: 1,
+                    name: 1,
+                    books: 1,
+                    location: 1,
+                    distance: 1
+                }
+            }
+        ]).toArray();
 
         res.status(200).json(users);
     } catch (error) {
-        console.error('Error fetching swap locations:', error);
-        res.status(500).send('An error occurred while fetching swap locations.');
+        console.error('Error fetching nearby users:', error);
+        res.status(500).send('An error occurred while fetching nearby users.');
     }
 });
+
 
 
 
