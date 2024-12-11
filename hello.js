@@ -103,6 +103,19 @@ app.get('/get-nearby-users', async (req, res) => {
         res.status(500).send('An error occurred while fetching nearby users.');
     }
 });
+app.get('/get-swap-locations', async (req, res) => {
+    try {
+        const users = await usersCollection.find(
+            { location: { $exists: true } }, // Ensure users have a location field
+            { projection: { name: 1, books: 1, location: 1, address: 1 } }
+        ).toArray();
+
+        res.status(200).json(users);
+    } catch (error) {
+        console.error('Error fetching swap locations:', error);
+        res.status(500).send('An error occurred while fetching swap locations.');
+    }
+});
 
 
 
