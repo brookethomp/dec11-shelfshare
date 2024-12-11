@@ -65,12 +65,15 @@
             document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
         });
 
-        function showEditProfile() {
-            document.getElementById('profileView').style.display = 'none';
-            document.getElementById('profileEdit').style.display = 'block';
-
-            document.getElementById('editProfileName').value = currentUser.name || '';
-            document.getElementById('editProfileBio').value = currentUser.bio || '';
+        // Display profile data
+        function showProfileView() {
+          document.getElementById('profileEdit').style.display = 'none';
+          document.getElementById('profileView').style.display = 'block';
+        
+          document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
+          document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
+          document.getElementById('viewProfileBooks').innerText = currentUser.books?.join(', ') || 'No books set';
+          document.getElementById('viewProfileAddress').innerText = currentUser.address || 'No address set';
         }
 
         // Update profile data
