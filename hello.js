@@ -193,10 +193,25 @@ app.get('/search', async (req, res) => {
 
   try {
     const db = client.db('final');
-    const booksCollection = db.collection('books'); // Assume books are in the 'books' collection
-    const results = await booksCollection.find({
-      title: { $regex: searchTerm, $options: 'i' } // Case-insensitive regex match
-    }).toArray();
+    const usersCollection = db.collection('users'); // Query the 'users' collection
+
+    // Search for users whose books match the search term
+    const results = await usersCollection.aggregate([
+      { $match: { books: { $elemMatch: { $regex: searchTerm, $options: 'i' } } } },
+      {
+        $project: {
+          username: 1,
+          name: 1,
+          books: {
+            $filter: {
+              input: "$books",
+              as: "book",
+              cond: { $regexMatch: { input: "$$book", regex: searchTerm, options: "i" } }
+            }
+          }
+        }
+      }
+    ]).toArray();
 
     res.status(200).json(results);
   } catch (error) {
