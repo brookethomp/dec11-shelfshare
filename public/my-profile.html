@@ -61,12 +61,27 @@
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
         document.addEventListener('DOMContentLoaded', () => {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
             if (!currentUser) {
-                window.location.href = 'index.html';
+                window.location.href = 'index.html'; // Redirect to login if not logged in
+                return;
             }
+        
+            // Display the user's profile
             document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
             document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
+            document.getElementById('viewProfileAddress').innerText = currentUser.address || 'No address set';
+        
+            const booksList = document.getElementById('viewProfileBooks');
+            booksList.innerHTML = '';
+            (currentUser.books || []).forEach(book => {
+                const li = document.createElement('li');
+                li.innerText = book;
+                booksList.appendChild(li);
+            });
         });
+
 
         // Display profile data
         function showProfileView() {
