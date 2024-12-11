@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>ShelfShare | Book Map</title>
-        <link rel="icon" type="image/x-icon" href="../icon.png">
-        <link rel="stylesheet" href="../style.css"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" type="image/x-icon" href="icon.png">
+        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- For hamburger and social media icons -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
         <style type="text/css">
@@ -48,6 +48,10 @@
                 width: 90%;
                 margin-bottom: 20px;
             }
+            #nearbyLoc {
+                width: 90%;
+                margin-top: 20px;
+            }
 
             h1 {
                 padding-top: 50px;
@@ -57,9 +61,16 @@
             h3 {
                 padding-top: 10px;
             }
+
+            @media (max-width: 600px) {
+                .content {
+                    margin: 20px 50px 20px 50px;
+                }
+            }
         </style>
 
-        <script src="../header.js"></script>
+        <!-- Header -->
+        <script src="header.js"></script>
     </head>
 
     <body>
@@ -79,10 +90,12 @@
                 <label for="address">Enter an Address:</label>
                 <input type="text" id="address" value="Tufts University, 419 Boston Ave, Medford, MA 02155">
                 <button onclick="getLocation()">Find Location</button>
+                <br>
+                <!-- <button onclick="findNearbyLocations()">Find Nearby Locations</button>-->
             </div>
 
             <div class="content2">
-                <div id="map"></div>
+                <div id="map"></div> <!-- Where Map Goes -->
                 <div>
                     <label for="searchBook">Enter a book to search for:</label>
                     <input type="text" id="searchBook" value="" oninput="getBook()">
@@ -93,12 +106,8 @@
             </div>
         </div>
 
-        <!-- Footer -->
-        <script src="footer.js"></script>
-        
+        <!-- leaflet: interactive map lib  -->
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-        
-      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
         <script>
         //leaflet creating map
             //leaflet map centered at tufts
@@ -114,7 +123,7 @@
         var swapLocations = [];
 
 
-fetch('/api/mapPage')
+        fetch('/api/books')
     .then(response => response.json())
     .then(data => {
         userInfo = data;
@@ -407,5 +416,8 @@ fetch('/api/mapPage')
                 }
             }
         </script>
+
+        <!-- Footer -->
+        <script src="footer.js"></script>
     </body>
 </html>
