@@ -56,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 <br>
                 <a href="https://brookethomp.github.io/dec11-shelfshare/public/my-profile.html">My Profile</a>
                 <br>
+                <a href="https://brookethomp.github.io/dec11-shelfshare">Home</a>
+                <br>
                 <form action="https://brookethomp.github.io/dec11-shelfshare/public/find.html" id="search"> <!-- May change page name -->
                     <input type="text" placeholder="Search books" name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
