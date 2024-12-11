@@ -2,143 +2,279 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="description" content="View your ShelfShare profile.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>ShelfShare | Profile</title>
-        <link rel="icon" type="image/x-icon" href="../icon.png">
-        <link rel="stylesheet" href="../style.css"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- For hamburger and social media icons -->
+        <link rel="icon" type="image/x-icon" href="icon.png"> <!--<link rel="icon" type="image/x-icon" href="../icon.png">-->
+        <link rel="stylesheet" href="style.css"/> <!--<link rel="stylesheet" href="../style.css"/>-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style type="text/css">
             .content {
-                padding: 20px 20% 50px 20%;
-                text-align: justify;
-                line-height: 2;
+                box-sizing: border-box;
+                max-width: 900px;
+                border: 2px solid #4C4C4C;
+                border-radius: 5px;
+                margin: 20px auto;
+                padding: 30px;
+                background-color: rgba(255, 255, 255, 0.3);
+                font-size: 16px;
+                line-height: 1.6;
             }
-            .content h1 {
+            .edit-btn, .save-btn {
+                display: block;
+                width: 150px;
+                border: none;
+                border-radius: 5px;
+                padding: 10px;
+                background-color: #3A7CA5;
+                color: #FFFFFF;
+                font-size: 18px;
+                text-align: center;
+                text-decoration: none;
+            }
+            .edit-btn:hover, .save-btn:hover {
+                background-color: #2A5A7F;
+            }
+            .edit-btn {
+                margin: 20px auto;
+            }
+            .cancel-btn {
+                margin-top: 10px;
+                display: inline-block;
+                padding: 5px 1px 0px 1px;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom: 1px solid #8A9F88;
+                border-radius: 0px;
+                background: none;
+                color: #8A9F88;
+                font-size: 16px;
+                text-decoration: none;
+            }
+            .cancel-btn:hover {
+                border-bottom: 1px solid #6F8972;
+                border-radius: 0px;
+                color: #6F8972;
+            }
+            .shelf, .locations select {
+                margin-bottom: 8px;
+            }
+            
+            #profileView, #profileEdit {
+                margin: 0 20%;
+                padding: 50px 0 20px 0;
+            }
+            #profileView h1, #profileEdit h1 {
                 padding-top: 20px;
                 padding-bottom: 20px;
                 text-align: center;
                 line-height: 1.2;
             }
+            #profileView p, #profileView li {
+                color: #4C4C4C;
+            }
+            #profileEdit label {
+                color: #4C4C4C;
+                font-size: 16px;
+            }
+            #profileEdit input, #profileEdit select {
+                border: 1px solid #4C4C4C;
+                border-radius: 5px;
+                padding: 1px 4px;
+                color: #4C4C4C;
+                font-size: 14px;
+            }
+            #profileEdit textarea {
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+                resize: none;
+                border: 1px solid #4C4C4C;
+                border-radius: 5px;
+                padding: 1px 4px;
+                color: #4C4C4C;
+                font-size: 14px;
+            }
+
+            input[type="checkbox"] {
+                margin-right: 3px;
+            }
+            input[type="checkbox"] + label {
+                color: #4C4C4C;
+            }
 
             @media (max-width: 600px) {
-                .content {
-                    padding: 20px 50px 20px 50px;
+                .cancel-btn {
+                    font-size: 12px;
+                }
+                #profileView, #profileEdit {
+                    margin: 0 50px;
+                    padding: 30px 0 12px 0;
                 }
             }
         </style>
 
         <!-- Header -->
-        <script src="../header.js"></script>
+        <script src="header.js"></script> <!--<script src="../header.js"></script>-->
     </head>
 
-<body>
-   <div class="content">
+    <body>
         <div id="profileView">
-            <h2>Your Profile</h2>
-            <p><strong>Name:</strong> <span id="viewProfileName"></span></p>
-            <p><strong>Bio:</strong> <span id="viewProfileBio"></span></p>
-            <p><strong>Address:</strong> <span id="viewProfileAddress"></span></p>
-            <p><strong>Books:</strong></p>
-            <ul id="viewProfileBooks"></ul>
-            <button onclick="showEditProfile()">Edit Profile</button>
+            <div class="content">
+                <h1>Your Profile</h1>
+                <div id="profileDetails">
+                    <p><strong>Name:</strong> <span id="viewProfileName"></span></p>
+                    <p><strong>About You:</strong> <span id="viewProfileBio"></span></p>
+                    <p><strong>Favorite Genres:</strong></p>
+                    <p><strong>Your Shelf:</strong></p>
+                    <ul id="viewProfileBooks"></ul>
+                </div>
+                <!-- Edit Profile Button -->
+                <button onclick="showEditProfile()" class="edit-btn">Edit Profile</button>
+            </div>
         </div>
 
-        <div id="profileEdit" style="display: none;">
-            <h2>Edit Profile</h2>
-            <input type="text" id="editProfileName" placeholder="Name">
-            <textarea id="editProfileBio" placeholder="Bio"></textarea>
-            <input type="text" id="editProfileAddress" placeholder="Address">
-            <textarea id="editProfileBooks" placeholder="Enter book titles, separated by commas"></textarea>
-            <button onclick="updateProfile()">Save Profile</button>
-            <button onclick="showProfileView()">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <script src="footer.js"></script>
+        <div id="profileEdit" style="display: none">
+            <div class="content">
+                <h1>Edit Your Profile</h1>
     
-    <script>
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                <!-- Name -->
+                <label for="name"><strong>Name:</strong></label>
+                <input type="text" id="editProfileName" placeholder="Enter your name" required>
+                <br><br>
+    
+                <!-- Bio -->
+                <label for="bio"><strong>About You:</strong></label><br>
+                <textarea id="editProfileBio" rows="4" cols="50" placeholder="Tell us a little about yourself..."></textarea>
+                <br><br>
+    
+                <!-- Favorite Genres -->
+                <label for="genres"><strong>Favorite Book Genres:</strong></label>
+                <br>
+                <input type="checkbox" id="genre1" value="fiction" name="genres">
+                <label for="genre1">Fiction</label>
+                <br>
+                <input type="checkbox" id="genre2" value="nonfiction" name="genres">
+                <label for="genre2">Non-fiction</label>
+                <br>
+                <input type="checkbox" id="genre3" value="mystery" name="genres">
+                <label for="genre3">Mystery</label>
+                <br>
+                <input type="checkbox" id="genre4" value="fantasy" name="genres">
+                <label for="genre4">Fantasy</label>
+                <br>
+                <input type="checkbox" id="genre5" value="sciencefiction" name="genres">
+                <label for="genre5">Science Fiction</label>
+                <br>
+                <input type="checkbox" id="genre6" value="romance" name="genres">
+                <label for="genre6">Romance</label>
+                <br>
+                <input type="checkbox" id="genre7" value="thriller" name="genres">
+                <label for="genre7">Thriller</label>
+                <br>
+                <input type="checkbox" id="genre8" value="biography" name="genres">
+                <label for="genre8">Biography</label>
+                <br>
+                <input type="checkbox" id="genre9" value="history" name="genres">
+                <label for="genre9">History</label>
+                <br><br>
+    
+                <!-- Shelf -->
+                <label for="shelf"><strong>Your Shelf:</strong></label><br>
+                <input type="text" id="editProfileBooks" class="shelf" name="shelf" placeholder="Book 1">
+                <br><br>
+    
+                <!-- Save/Cancel Buttons -->
+                <div style="text-align: center">
+                    <button onclick="updateProfile()" class="save-btn">Save Profile</button>
+                    <button onclick="showViewProfile()" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
 
-        document.addEventListener('DOMContentLoaded', () => {
+        <!-- Footer -->
+        <script src="footer.js"></script> <!--<script src="../footer.js"></script>-->
+
+        <script>
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        
-            if (!currentUser) {
-                window.location.href = 'index.html'; // Redirect to login if not logged in
-                return;
-            }
-        
-            // Display the user's profile
-            document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
-            document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
-            document.getElementById('viewProfileAddress').innerText = currentUser.address || 'No address set';
-        
-            const booksList = document.getElementById('viewProfileBooks');
-            booksList.innerHTML = '';
-            (currentUser.books || []).forEach(book => {
-                const li = document.createElement('li');
-                li.innerText = book;
-                booksList.appendChild(li);
+    
+            document.addEventListener('DOMContentLoaded', () => {
+                if (!currentUser) {
+                    window.location.href = 'https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html'; // Redirect to login if not logged in
+                    return;
+                }
+                
+                // Display the user's profile
+                document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
+                document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
+                document.getElementById('viewProfileAddress').innerText = currentUser.address || 'No address set';
+            
+                const booksList = document.getElementById('viewProfileBooks');
+                booksList.innerHTML = '';
+                (currentUser.books || []).forEach(book => {
+                    const li = document.createElement('li');
+                    li.innerText = book;
+                    booksList.appendChild(li);
+                });
             });
-        });
-
-        // Display profile data
-        function showProfileView() {
-          document.getElementById('profileEdit').style.display = 'none';
-          document.getElementById('profileView').style.display = 'block';
+    
+            function showEditProfile() {
+                document.getElementById('profileView').style.display = 'none';
+                document.getElementById('profileEdit').style.display = 'block';
         
-          document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
-          document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
-          document.getElementById('viewProfileAddress').innerText = currentUser.address || 'No address set';
-        
-          const booksList = document.getElementById('viewProfileBooks');
-          booksList.innerHTML = '';
-          (currentUser.books || []).forEach(book => {
-            const li = document.createElement('li');
-            li.innerText = book;
-            booksList.appendChild(li);
-          });
-        }
-        
-        function showEditProfile() {
-          document.getElementById('profileView').style.display = 'none';
-          document.getElementById('profileEdit').style.display = 'block';
-        
-          document.getElementById('editProfileName').value = currentUser.name || '';
-          document.getElementById('editProfileBio').value = currentUser.bio || '';
-          document.getElementById('editProfileAddress').value = currentUser.address || '';
-          document.getElementById('editProfileBooks').value = (currentUser.books || []).join(', ');
-        }
-        
-        async function updateProfile() {
-          const name = document.getElementById('editProfileName').value;
-          const bio = document.getElementById('editProfileBio').value;
-          const address = document.getElementById('editProfileAddress').value;
-          const books = document.getElementById('editProfileBooks').value.split(',').map(b => b.trim());
-        
-          try {
-            const response = await fetch('/update-profile', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ username: currentUser.username, name, bio, address, books }),
-            });
-        
-            if (response.ok) {
-              currentUser.name = name;
-              currentUser.bio = bio;
-              currentUser.address = address;
-              currentUser.books = books;
-              localStorage.setItem('currentUser', JSON.stringify(currentUser));
-              showProfileView();
-            } else {
-              alert('Failed to update profile.');
+                document.getElementById('editProfileName').value = currentUser.name || '';
+                document.getElementById('editProfileBio').value = currentUser.bio || '';
+                document.getElementById('editProfileAddress').value = currentUser.address || '';
+                document.getElementById('editProfileBooks').value = (currentUser.books || []).join(', ');
             }
-          } catch (error) {
-            console.error('Error updating profile:', error);
-            alert('An error occurred while updating your profile.');
-          }
-        }
-    </script>
-</body>
+    
+            async function updateProfile() {
+                const name = document.getElementById('editProfileName').value;
+                const bio = document.getElementById('editProfileBio').value;
+                const address = document.getElementById('editProfileAddress').value;
+                const book = document.getElementById('editProfileBooks').value;
+    
+                try {
+                    const response = await fetch('/update-profile', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username: currentUser.username, name, bio, address, books }),
+                    });
+                
+                    if (response.ok) {
+                        currentUser.name = name;
+                        currentUser.bio = bio;
+                        currentUser.address = address;
+                        currentUser.books = books;
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                        showProfileView();
+                    } else {
+                        alert('Failed to update profile.');
+                    }
+                } catch (error) {
+                    console.error('Error updating profile:', error);
+                    alert('An error occurred while updating your profile.');
+                }
+            }
+    
+            function showViewProfile() {
+                document.getElementById('profileEdit').style.display = 'none';
+                document.getElementById('profileView').style.display = 'block';
+                
+                document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
+                document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
+                document.getElementById('viewProfileAddress').innerText = currentUser.address || 'No address set';
+                
+                const booksList = document.getElementById('viewProfileBooks');
+                booksList.innerHTML = '';
+                (currentUser.books || []).forEach(book => {
+                    const li = document.createElement('li');
+                    li.innerText = book;
+                    booksList.appendChild(li);
+                });
+            }
+        </script>
+    </body>
 </html>
