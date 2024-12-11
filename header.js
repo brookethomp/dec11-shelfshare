@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <br>
                 <a href="https://brookethomp.github.io/dec11-shelfshare/public/subscription.html">Subscriptions</a>
                 <br>
-                <a href="https://brookethomp.github.io/dec11-shelfshare/public/login.html">Log In</a>
+                <a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/">Log In</a>
                 <br>
                 <a href="https://shelfshare1-fc7cf721ef64.herokuapp.com/my-profile.html">My Profile</a>
                 <br>
