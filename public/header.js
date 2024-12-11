@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         </li>
                         <li><a href="https://brookethomp.github.io/dec11-shelfshare/public/subscription.html">Subscriptions</a></li>
                         <li><strong><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/">Log In</a></strong></li>
+                        <li><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/my-profile.html">My Profile</a></li>
                     </ul>
                 </div>
                 <div style="min-width: 10px"></div>
