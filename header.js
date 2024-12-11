@@ -14,8 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             </form>
                         </li>
                         <li><a href="https://brookethomp.github.io/dec11-shelfshare/public/subscription.html">Subscriptions</a></li>
-                        <li><strong><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/">Log In</a></strong></li>
-                        <li><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/my-profile.html">My Profile</a></li>
+                        <li><strong><a href="#" id="loginProfile1">Log In</a></strong></li>
                     </ul>
                 </div>
                 <div style="min-width: 10px"></div>
@@ -53,11 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <br>
                 <a href="https://brookethomp.github.io/dec11-shelfshare/public/subscription.html">Subscriptions</a>
                 <br>
-                <a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/">Log In</a>
-                <br>
-                <a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/my-profile.html">My Profile</a>
-                <br>
-                <a href="https://brookethomp.github.io/dec11-shelfshare">Home</a>
+                <a href="#" id="loginProfile2"></a>
                 <br>
                 <form action="https://brookethomp.github.io/dec11-shelfshare/public/find.html" id="search"> <!-- May change page name -->
                     <input type="text" placeholder="Search books" name="search">
@@ -72,15 +67,29 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.insertBefore(header, document.body.firstChild);
 });
 
-// Show or hide search bar, depending on page
 document.addEventListener("DOMContentLoaded", function() {
+    // Show or hide search bar, depending on page
     var page = window.location.pathname;
     var search = document.getElementById("search");
-    if (page === "/shelfshare/find.html" || page === "/shelfshare/swap.html") { // May change page names
+    if (page === "/dec11-shelfshare/public/find.html" || page === "/dec11-shelfshare/public/swap.html") { // May change page names
         search.style.visibility = "hidden";
     }
     else {
         search.style.visibility = "visible";
+    }
+
+    // Check if user is logged in
+    if (!currentUser) {
+        document.getElementById('loginProfile1').innerText = "Log In";
+        document.getElementById('loginProfile1').href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/";
+        document.getElementById('loginProfile2').innerText = "Log In";
+        document.getElementById('loginProfile2').href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/";
+    }
+    else { 
+        document.getElementById('loginProfile1').innerText = "Profile";
+        document.getElementById('loginProfile1').href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/my-profile.html";
+        document.getElementById('loginProfile2').innerText = "Profile";
+        document.getElementById('loginProfile2').href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/my-profile.html";
     }
 });
 
