@@ -73,21 +73,16 @@ app.get('/get-nearby-users', async (req, res) => {
     const { lat, lng, radius } = req.query;
 
     if (!lat || !lng || !radius) {
-        return res.status(400).send('Missing latitude, longitude, or radius.');
+        return res.status(400).send('Latitude, longitude, and radius are required.');
     }
-
-    const maxDistance = parseFloat(radius) * 1609.34; // Convert miles to meters
 
     try {
         const nearbyUsers = await usersCollection.aggregate([
             {
                 $geoNear: {
-                    near: {
-                        type: "Point",
-                        coordinates: [parseFloat(lng), parseFloat(lat)]
-                    },
+                    near: { type: "Point", coordinates: [parseFloat(lng), parseFloat(lat)] },
                     distanceField: "distance",
-                    maxDistance: maxDistance,
+                    maxDistance: parseFloat(radius) * 1609.34, // Convert miles to meters
                     spherical: true
                 }
             },
@@ -95,8 +90,8 @@ app.get('/get-nearby-users', async (req, res) => {
                 $project: {
                     username: 1,
                     name: 1,
-                    books: 1,
                     address: 1,
+                    books: 1,
                     distance: 1
                 }
             }
@@ -108,6 +103,7 @@ app.get('/get-nearby-users', async (req, res) => {
         res.status(500).send('An error occurred while fetching nearby users.');
     }
 });
+
 
 
 // Search endpoint
