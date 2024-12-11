@@ -118,6 +118,20 @@
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(map);
 
+                    // Add click event listener for selecting a location
+                    map.on('click', function(e) {
+                        // Remove previous circle and marker
+                        if (circle) map.removeLayer(circle);
+                        if (markerSelected) map.removeLayer(markerSelected);
+                
+                        // Update selected location
+                        locSelected = e.latlng;
+                
+                        // Mark the new location and fetch nearby users
+                        newLocation(locSelected);
+                        fetchSwapLocations(); // Fetch nearby users and display them on the map
+                    });
+
                 fetchSwapLocations();
             });
 
