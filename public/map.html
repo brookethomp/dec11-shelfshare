@@ -132,7 +132,7 @@
                 const radius = document.getElementById("radius").value;
 
                 try {
-                    const response = await fetch(`/get-swap-locations?lat=${locSelected.lat}&lng=${locSelected.lng}&radius=${radius}`);
+                    const response = await fetch(`/get-nearby-users?lat=${locSelected.lat}&lng=${locSelected.lng}&radius=${radius}`);
                     const data = await response.json();
 
                     if (response.ok) {
