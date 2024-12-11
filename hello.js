@@ -40,14 +40,30 @@ app.post('/register', async (req, res) => {
 // Login endpoint
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
-  const user = await usersCollection.findOne({ username });
 
-  if (!user || !(await bcrypt.compare(password, user.password))) {
-    return res.status(400).send('Invalid username or password.');
+  try {
+    const user = await usersCollection.findOne({ username });
+
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return res.status(400).send('Invalid username or password.');
+    }
+
+    res.status(200).json({
+      message: 'Login successful',
+      user: {
+        username: user.username,
+        name: user.name,
+        bio: user.bio,
+        address: user.address || '', // Include address
+        books: user.books || [] // Include books
+      }
+    });
+  } catch (error) {
+    console.error('Error during login:', error);
+    res.status(500).send('An error occurred while logging in.');
   }
-
-  res.status(200).json({ message: 'Login successful', user: { username: user.username, name: user.name, bio: user.bio } });
 });
+
 
 app.post('/update-profile', async (req, res) => {
   const { username, name, bio, books, address } = req.body;
