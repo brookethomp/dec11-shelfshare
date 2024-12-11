@@ -40,7 +40,9 @@
             <h2>Your Profile</h2>
             <p><strong>Name:</strong> <span id="viewProfileName"></span></p>
             <p><strong>Bio:</strong> <span id="viewProfileBio"></span></p>
-            <p><strong>Books:</strong> <span id="viewProfileBooks"></span></p>
+            <p><strong>Address:</strong> <span id="viewProfileAddress"></span></p>
+            <p><strong>Books:</strong></p>
+            <ul id="viewProfileBooks"></ul>
             <button onclick="showEditProfile()">Edit Profile</button>
         </div>
 
@@ -48,7 +50,8 @@
             <h2>Edit Profile</h2>
             <input type="text" id="editProfileName" placeholder="Name">
             <textarea id="editProfileBio" placeholder="Bio"></textarea>
-            <input type="text" id="editProfileBooks" placeholder="Book">
+            <input type="text" id="editProfileAddress" placeholder="Address">
+            <textarea id="editProfileBooks" placeholder="Enter book titles, separated by commas"></textarea>
             <button onclick="updateProfile()">Save Profile</button>
             <button onclick="showProfileView()">Cancel</button>
         </div>
@@ -72,44 +75,54 @@
         
           document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
           document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
-          document.getElementById('viewProfileBooks').innerText = currentUser.books?.join(', ') || 'No books set';
           document.getElementById('viewProfileAddress').innerText = currentUser.address || 'No address set';
-        }
-
-        // Update profile data
-        async function updateProfile() {
-          const name = document.getElementById('editProfileName').value;
-          const bio = document.getElementById('editProfileBio').value;
-          const books = document.getElementById('editProfileBooks').value.split(',').map(b => b.trim());
-          const address = document.getElementById('editProfileAddress').value;
         
-          const response = await fetch('/update-profile', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: currentUser.username, name, bio, books, address }),
+          const booksList = document.getElementById('viewProfileBooks');
+          booksList.innerHTML = '';
+          (currentUser.books || []).forEach(book => {
+            const li = document.createElement('li');
+            li.innerText = book;
+            booksList.appendChild(li);
           });
-        
-          if (response.ok) {
-            currentUser.name = name;
-            currentUser.bio = bio;
-            currentUser.books = books;
-            currentUser.address = address;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            showProfileView();
-          } else {
-            alert('Failed to update profile');
-          }
         }
         
-        // Populate edit fields
         function showEditProfile() {
           document.getElementById('profileView').style.display = 'none';
           document.getElementById('profileEdit').style.display = 'block';
         
           document.getElementById('editProfileName').value = currentUser.name || '';
           document.getElementById('editProfileBio').value = currentUser.bio || '';
-          document.getElementById('editProfileBooks').value = currentUser.books?.join(', ') || '';
           document.getElementById('editProfileAddress').value = currentUser.address || '';
+          document.getElementById('editProfileBooks').value = (currentUser.books || []).join(', ');
+        }
+        
+        async function updateProfile() {
+          const name = document.getElementById('editProfileName').value;
+          const bio = document.getElementById('editProfileBio').value;
+          const address = document.getElementById('editProfileAddress').value;
+          const books = document.getElementById('editProfileBooks').value.split(',').map(b => b.trim());
+        
+          try {
+            const response = await fetch('/update-profile', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ username: currentUser.username, name, bio, address, books }),
+            });
+        
+            if (response.ok) {
+              currentUser.name = name;
+              currentUser.bio = bio;
+              currentUser.address = address;
+              currentUser.books = books;
+              localStorage.setItem('currentUser', JSON.stringify(currentUser));
+              showProfileView();
+            } else {
+              alert('Failed to update profile.');
+            }
+          } catch (error) {
+            console.error('Error updating profile:', error);
+            alert('An error occurred while updating your profile.');
+          }
         }
     </script>
     <script src="footer.js"></script>
