@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             </form>
                         </li>
                         <li><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/subscription.html">Subscriptions</a></li>
-                        <li><strong><a href="#" id="loginProfile1">Log In</a></strong></li>
+                        <li><strong><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html" id="loginProfile1">Log In</a></strong></li>
                     </ul>
                 </div>
                 <div style="min-width: 10px"></div>
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <br>
                 <a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/subscription.html">Subscriptions</a>
                 <br>
-                <a href="#" id="loginProfile2"></a>
+                <a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html" id="loginProfile2"></a>
                 <br>
                 <form action="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/find.html" id="search2"> <!-- May change page name -->
                     <input type="text" placeholder="Search books" name="search">
@@ -81,15 +81,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // Check if user is logged in
     if (!currentUser) {
         document.getElementById('loginProfile1').innerText = "Log In";
-        document.getElementById('loginProfile1').href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html";
         document.getElementById('loginProfile2').innerText = "Log In";
-        document.getElementById('loginProfile2').href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html";
     }
     else { 
         document.getElementById('loginProfile1').innerText = "Profile";
-        document.getElementById('loginProfile1').href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/my-profile.html";
         document.getElementById('loginProfile2').innerText = "Profile";
-        document.getElementById('loginProfile2').href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/my-profile.html";
     }
 });
 
