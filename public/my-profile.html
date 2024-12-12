@@ -152,7 +152,7 @@
             </div>
 
             <!-- Logout Button -->
-            <button id="logoutButton" class="logout-btn">Log Out</button>
+            <button id="logoutButton" class="logout-btn" onclick="logout()">Log Out</button>
         </div>
 
         <div id="profileEdit" style="display: none">
@@ -277,10 +277,14 @@
                     booksList.appendChild(li);
                 });
             }
-        function logout() {
-            localStorage.removeItem('currentUser');
-            window.location.href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html";
-        }
+            function logout() {
+                // Remove the current user from localStorage
+                localStorage.removeItem('currentUser');
+                
+                // Redirect to login page
+                window.location.href = 'https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html';
+            }
+
         </script>
     </body>
 </html>
