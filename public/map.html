@@ -402,7 +402,7 @@
                 });
 
 
-                if (booksSearchedFor.length > 0) {
+                                if (booksSearchedFor.length > 0) {
 
                     const form = document.createElement("form");
                     form.id = "booksForm";
@@ -423,7 +423,7 @@
                         }
 
                         var bookChoice = document.createElement("div");
-                        bookChoice.innerHTML = "<input type='radio' id='" + foundB.name + "' name='swapBook' value='" + foundB.name + "' required><label for='" + foundB.name + "'> " + foundB.name + "</label>";
+                        bookChoice.innerHTML = "<input type='radio' id='" + foundB.name + "' name='swapBook' value='" + foundB.name + " [.p] "+ foundB.loc + "' required><label for='" + foundB.name + "'> " + foundB.name + "</label>";
                         form.appendChild(bookChoice);
                     });
 
@@ -432,19 +432,6 @@
                     submit.textContent = "SwapBook"; 
                     submit.id = "SwapBook";
                     form.appendChild(submit);
-
-                    submit.onclick = function() {
-                        const selectedBook = document.querySelector("input[name='swapBook']:checked");
-                        if (selectedBook) {
-                            searchedBooksInfo.innerHTML = "<p>You are swapping for: " + selectedBook.value + "</p>";
-                            searchedBooksInfo.innerHTML += "Choose one of your books to swap out"
-                        } else {
-                            alert("You need to select a book to swap");
-                            //searchedBooksInfo.innerHTML = "<p>Please select a book to swap.</p>";
-                        }
-                    };
-
-
                     searchedBooksInfo.appendChild(form);
                 } else {
                     searchedBooksInfo.innerHTML = "<p>No books found matching the search.</p>";
