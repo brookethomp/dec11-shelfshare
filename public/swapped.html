@@ -5,26 +5,26 @@
     <meta name="description" content="ShelfShare is a community-based platform that allows local book lovers to easily exchange books with each other through a flexible subscription model, promoting affordable reading and sustainability.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ShelfShare | ChooseSwap</title>
+    <title>ShelfShare | Swap Confirmation</title>
     <link rel="icon" type="image/x-icon" href="icon.png">
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- For hamburger and social media icons -->
     <style>
         .content {
-                border: 2px solid #4C4C4C;
-                border-radius: 5px;
-                margin: 20px 20% 10px 20%;
-                padding: 30px;
-                background-color: rgba(255, 255, 255, 0.3);
+            border: 2px solid #4C4C4C;
+            border-radius: 5px;
+            margin: 20px 20% 10px 20%;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.3);
         }
+        
         a:link {
           color: #3A7CA5;
           background-color: transparent;
           text-decoration: none;
         }
-        
         a:hover {
-          color: #4C4C4C;
+          color: #2A5A7F;
           background-color: transparent;
           text-decoration: underline;
         }
@@ -35,9 +35,10 @@
 </head>
 <body>
     <br><br>
-    <h1 style="text-align: center;">Books Swapped!</h1>
+    <h1 style="text-align: center;">Swap Confirmation</h1>
     <div class="content">
         <div id="selectedValue">No value selected.</div>
+        <div id="selectedSpot">No value selected.</div>
         <div id="findAdd"></div>
     </div>
 
@@ -54,12 +55,13 @@
             const selectedLocation = information[2];
 
             if (information) {
-                let words = "<p>You are swapping <strong>" + yourBook + "</strong> for <strong>" + selectedBook + "</strong></p>";
+                let words = "<p>You are swapping your copy of <strong>" + yourBook + "</strong></p>";
                 document.getElementById('selectedValue').innerHTML = words;
-                document.getElementById('selectedValue').innerHTML += "<p>Go to location: <strong>" + selectedLocation + "</strong> and swap your books!</p><br>";
+                document.getElementById('selectedValue').innerHTML += "<p>You are picking up a copy of <strong>" + selectedBook + "</strong></p><br>";
+                document.getElementById('selectedValue').innerHTML += "<p>Go to location: <strong>" + selectedLocation + "</strong> to complete the swap!</p><br>";
 
                 const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedLocation)}`;
-                document.getElementById('selectedValue').innerHTML += `<p> Click <a href="${mapsUrl}" target="_blank">HERE</a> to get directions to BookSwap Location</p>`;
+                document.getElementById('selectedSpot').innerHTML = `<p> Click <a href="${mapsUrl}" target="_blank">HERE</a> to get directions to the SwapSpot</p>`;
             } else {
                 alert("Error did not swap");
                 return;
