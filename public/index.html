@@ -22,6 +22,10 @@
                 line-height: 1.2;
             }
 
+            .extra-space {
+                height: 200px; /* Adjust height as needed for blank space */
+            }
+
             @media (max-width: 600px) {
                 .content {
                     padding: 20px 50px 20px 50px;
@@ -50,6 +54,9 @@
             <button onclick="login()">Login</button>
         </div>
     </div>
+    
+    <!-- Add blank space below -->
+    <div class="extra-space"></div>
 
     <script>
         async function register() {
@@ -64,29 +71,29 @@
             alert(await response.text());
         }
 
-    async function login() {
-        const username = document.getElementById('loginUsername').value;
-        const password = document.getElementById('loginPassword').value;
+        async function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
 
-        const response = await fetch('/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password }),
-        });
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }),
+            });
 
-        const data = await response.json();
+            const data = await response.json();
 
-        if (response.ok) {
-            localStorage.setItem('currentUser', JSON.stringify(data.user));
-            window.location.href = 'my-profile.html';
-        } else {
-            if (response.status === 404) { // Assuming the server returns 404 for user not found
-                alert('User not found. Please register to create an account.');
+            if (response.ok) {
+                localStorage.setItem('currentUser', JSON.stringify(data.user));
+                window.location.href = 'my-profile.html';
             } else {
-                alert(data.message || 'Login failed');
+                if (response.status === 404) { // Assuming the server returns 404 for user not found
+                    alert('User not found. Please register to create an account.');
+                } else {
+                    alert(data.message || 'Login failed');
+                }
             }
         }
-    }
     </script>
     <script src="footer.js"></script>
 </body>
