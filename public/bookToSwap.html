@@ -75,8 +75,10 @@
                     bookChoice.innerHTML = "<input type='radio' id='" + book + "' name='swapBook' value='" + book + "[.p]" + selectedBook + "[.p]" + selectedLocation + "' required><label for='" + book + "'> " + book + "</label>";
                     form.appendChild(bookChoice);
                 });
-                var space = document.createElement("br");
+                
+                var space = document.createElement("div");
                 form.appendChild(space);
+                
                 const submit = document.createElement("button");
                     submit.type = "submit"; 
                     submit.textContent = "SwapBook"; 
