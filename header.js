@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             </form>
                         </li>
                         <li><a href="https://brookethomp.github.io/dec11-shelfshare/public/subscription.html">Subscriptions</a></li>
-                        <li><strong><a href="#" id="loginProfile1">Log In</a></strong></li>
+                        <li><strong><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html" id="loginProfile1">Log In</a></strong></li>
                     </ul>
                 </div>
                 <div style="min-width: 10px"></div>
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <br>
                 <a href="https://brookethomp.github.io/dec11-shelfshare/public/subscription.html">Subscriptions</a>
                 <br>
-                <a href="#" id="loginProfile2"></a>
+                <a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html" id="loginProfile2"></a>
                 <br>
                 <form action="https://brookethomp.github.io/dec11-shelfshare/public/find.html" id="search"> <!-- May change page name -->
                     <input type="text" placeholder="Search books" name="search">
