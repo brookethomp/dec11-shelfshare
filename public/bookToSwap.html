@@ -68,7 +68,7 @@
 
             // Display the value if it exists
             if (information) {
-                document.getElementById('selectedBook').innerHTML =  "<p><strong>You selected: </strong>" + selectedBook + "</p>";
+                document.getElementById('selectedBook').innerHTML =  "<p><strong>Selected Book: </strong>" + selectedBook + "</p>";
                 document.getElementById('selectedLocation').innerHTML =  "<p><strong>SwapSpot: </strong>" + selectedLocation + "</p>";
             } else {
                 alert("You didn't select a valid book");
@@ -86,7 +86,7 @@
                 }
                 
                 // Display the user's profile
-                document.getElementById('viewProfileName').innerHTML = "<p><strong>Your username: </strong>" + currentUser.username + "</p>";
+                document.getElementById('viewProfileName').innerHTML = "<p><strong>Your Username: </strong>" + currentUser.username + "</p>";
                 document.getElementById('chooseWhich').innerHTML = "<h2 style='text-align: center;'>Choose one of your books to swap: </h2>";
                 var searchedBooksInfo = document.getElementById("searchedBooks");
 
