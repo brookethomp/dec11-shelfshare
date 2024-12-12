@@ -208,7 +208,7 @@
                 const name = document.getElementById('editProfileName').value;
                 const bio = document.getElementById('editProfileBio').value;
                 const address = document.getElementById('editProfileAddress').value;
-                const books = document.getElementById('editProfileBooks').value;
+                const books = document.getElementById('editProfileBooks').value.trim().split(',');
 
                 if (!name || !bio || !address || !books) {
                     alert('Please fill out all fields.');
