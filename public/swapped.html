@@ -22,15 +22,40 @@
     <script src="header.js"></script>
 </head>
 <body>
-    <h1>Selected Value</h1>
+    <h1>Books Swapped!</h1>
     <div class="content">
-      <p>You Swapped books!</p>
+        <div id="selectedValue">No value selected.</div>
+        <div id="usersBooks"></div>
+        <div id="viewProfileName"></div>
+        <div id="viewProfileBio"></div>
+        <div id="viewProfileAddress"></div>
+        <div id="viewProfileBooks"></div>
+        <div id="searchedBooks"></div>
     </div>
 
-    
 
     <script>
-        
+        userBook();
+
+        function userBook() {
+            const params = new URLSearchParams(window.location.search);
+            var information = params.get('swapBook'); // Use the correct parameter name
+            information = information.split("[.p]");
+            const yourBook = information[0];            
+            const selectedBook = information[1];
+            const selectedLocation = information[2];
+
+            // Display the value if it exists
+            if (information) {
+                let words = "<p>You are swapping <strong>" + yourBook + "</strong> for <strong>" + + selectedBook + "</strong></p>";
+                document.getElementById('selectedValue').innerHTML = words;
+                document.getElementById('selectedValue').innerHTML += "Go to location: " + selectedLocation + " and swap you books!";
+            } else {
+                alert("Error did not swap");
+                return;
+            }
+        }
+       
     </script>
     <script src="footer.js"></script>
 </body>
