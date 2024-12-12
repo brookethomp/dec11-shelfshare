@@ -406,6 +406,8 @@
 
                     const form = document.createElement("form");
                     form.id = "booksForm";
+                    form.action = "bookToSwap.html";
+                    form.method = "get";
 
                     booksSearchedFor.forEach(function(foundB) {
                         if (!(form.innerHTML.includes(foundB.loc))) {
@@ -426,7 +428,7 @@
                     });
 
                     const submit = document.createElement("button");
-                    submit.type = "button"; 
+                    submit.type = "submit"; 
                     submit.textContent = "SwapBook"; 
                     submit.id = "SwapBook";
                     form.appendChild(submit);
