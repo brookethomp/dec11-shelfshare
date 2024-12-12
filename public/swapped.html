@@ -23,15 +23,11 @@
     <script src="header.js"></script>
 </head>
 <body>
+    <br><br>
     <h1 style="text-align: center;">Books Swapped!</h1>
     <div class="content">
         <div id="selectedValue">No value selected.</div>
-        <div id="usersBooks"></div>
-        <div id="viewProfileName"></div>
-        <div id="viewProfileBio"></div>
-        <div id="viewProfileAddress"></div>
-        <div id="viewProfileBooks"></div>
-        <div id="searchedBooks"></div>
+        <div id="findAdd"></div>
     </div>
 
 
@@ -50,7 +46,11 @@
             if (information) {
                 let words = "<p>You are swapping <strong>" + yourBook + "</strong> for <strong>" + selectedBook + "</strong></p>";
                 document.getElementById('selectedValue').innerHTML = words;
-                document.getElementById('selectedValue').innerHTML += "<p>Go to location: <strong>" + selectedLocation + "</strong> and swap you books!</p>";
+                document.getElementById('selectedValue').innerHTML += "<p>Go to location: <strong>" + selectedLocation + "</strong> and swap your books!</p><br>";
+
+                // Generate Google Maps link
+                const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedLocation)}`;
+                document.getElementById('selectedValue').innerHTML += `<p><a href="${mapsUrl}" target="_blank">Get Directions</a></p>`;
             } else {
                 alert("Error did not swap");
                 return;
