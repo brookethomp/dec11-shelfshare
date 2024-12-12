@@ -156,7 +156,7 @@
                 <br><br>
     
                 <!-- Shelf -->
-                <label for="shelf"><strong>Your Shelf:</strong></label>
+                <label for="shelf"><strong>Your Shelf:</strong></label><br>
                 <input type="text" id="editProfileBooks" class="shelf" name="shelf" placeholder="List your books, separated by a comma">
                 <br><br>
     
@@ -209,6 +209,11 @@
                 const bio = document.getElementById('editProfileBio').value;
                 const address = document.getElementById('editProfileAddress').value;
                 const book = document.getElementById('editProfileBooks').value;
+
+                if (!name || !bio || !address || !books) {
+                    alert('Please fill out all fields.');
+                    return;
+                }
     
                 try {
                     const response = await fetch('/update-profile', {
