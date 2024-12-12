@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             </form>
                         </li>
                         <li><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/subscription.html">Subscriptions</a></li>
-                        <li><strong><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html" id="loginProfile1">Log In</a></strong></li>
+                        <li><strong><a href="#" id="loginProfile1">Log In</a></strong></li>
                     </ul>
                 </div>
                 <div style="min-width: 10px"></div>
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <br>
                 <a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/subscription.html">Subscriptions</a>
                 <br>
-                <a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html" id="loginProfile2"></a>
+                <a href="#" id="loginProfile2"></a>
                 <br>
                 <form action="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/find.html" id="search2"> <!-- May change page name -->
                     <input type="text" placeholder="Search books" name="search">
@@ -65,9 +65,42 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="blank-space"></div>
     `;
     document.body.insertBefore(header, document.body.firstChild);
-});
 
-document.addEventListener("DOMContentLoaded", function() {
+    // Centralized login state check
+    function checkLoginState() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const loginLinks1 = document.getElementById('loginProfile1');
+        const loginLinks2 = document.getElementById('loginProfile2');
+
+        if (currentUser) {
+            // User is logged in
+            loginLinks1.innerText = "Profile";
+            loginLinks1.href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/my-profile.html";
+            loginLinks2.innerText = "Profile";
+            loginLinks2.href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/my-profile.html";
+        } else {
+            // User is not logged in
+            loginLinks1.innerText = "Log In";
+            loginLinks1.href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html";
+            loginLinks2.innerText = "Log In";
+            loginLinks2.href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html";
+        }
+    }
+
+    // Check login state when page loads
+    checkLoginState();
+
+    // Add logout functionality to profile page
+    const logoutButton = document.getElementById('logoutButton');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', function() {
+            // Remove current user from local storage
+            localStorage.removeItem('currentUser');
+            // Redirect to login page
+            window.location.href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html";
+        });
+    }
+
     // Show or hide search bar, depending on page
     var page = window.location.pathname;
     var search = document.getElementById("search1");
@@ -76,16 +109,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     else {
         search1.style.visibility = "visible";
-    }
-
-    // Check if user is logged in
-    if (!currentUser) {
-        document.getElementById('loginProfile1').innerText = "Log In";
-        document.getElementById('loginProfile2').innerText = "Log In";
-    }
-    else { 
-        document.getElementById('loginProfile1').innerText = "Profile";
-        document.getElementById('loginProfile2').innerText = "Profile";
     }
 });
 
