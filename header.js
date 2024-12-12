@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <div class="navbar">
                     <ul>
                         <li>
-                            <form action="https://brookethomp.github.io/dec11-shelfshare/public/find.html" id="search"> <!-- May change page name -->
+                            <form action="https://brookethomp.github.io/dec11-shelfshare/public/find.html" id="search1"> <!-- May change page name -->
                                 <input type="text" placeholder="Search books" name="search">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <br>
                 <a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html" id="loginProfile2"></a>
                 <br>
-                <form action="https://brookethomp.github.io/dec11-shelfshare/public/find.html" id="search"> <!-- May change page name -->
+                <form action="https://brookethomp.github.io/dec11-shelfshare/public/find.html" id="search2"> <!-- May change page name -->
                     <input type="text" placeholder="Search books" name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
@@ -70,12 +70,12 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     // Show or hide search bar, depending on page
     var page = window.location.pathname;
-    var search = document.getElementById("search");
+    var search1 = document.getElementById("search1");
     if (page === "/dec11-shelfshare/public/find.html" || page === "/dec11-shelfshare/public/swap.html") { // May change page names
-        search.style.visibility = "hidden";
+        search1.style.visibility = "hidden";
     }
     else {
-        search.style.visibility = "visible";
+        search1.style.visibility = "visible";
     }
 
     // Check if user is logged in
