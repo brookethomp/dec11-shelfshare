@@ -45,42 +45,50 @@
     <body>
         <h1>Coming Soon: Subscription Plans</h1>
 
-        <div class="content">
-            <!-- Subscription Image with smaller size -->
-            <img style="display: block;" src="mailbox.jpg" alt="Subscription Plans">
-            <h3 style="color: #4C4C4C">
-                Choose the plan that best suits your reading habits and get access to exclusive benefits!
-            </h3>
-            <br>
-            <div>
-                <h2>Basic Plan</h2>
-                <p>
-                    Perfect for casual readers. Swap one book at a time with nearby members, and add up to two locations at any one time.
-                </p>
-                <p><strong>Price:</strong> $5/month</p>
-            </div>
-            <br>
-            <div>
-                <h2>Premium Plan</h2>
-                <p>
-                    Designed for avid readers. Swap up to three books simultaneously, and add as many as five locations to choose from.
-                </p>
-                <p><strong>Price:</strong> $12/month</p>
-            </div>
-            <br>
-            <div>
-                <h2>Family Plan</h2>
-                <p>
-                    Great for households. Swap up to ten book at once, customize genres for each member of your family, and add as many as twelve 
-                    locations to choose from.
-                </p>
-                <p><strong>Price:</strong> $25/month</p>
-            </div>
-            <br>
-            <h3>
-                Join today and start discovering the joy of sharing and finding books with ShelfShare!
-            </h3>
-        </div>
+    <div class="content">
+        <h2>Select Your Subscription</h2>
+        <form id="subscriptionForm">
+            <input type="radio" name="plan" value="Basic Plan" id="basic" required>
+            <label for="basic">Basic Plan - $5/month</label><br>
+            <input type="radio" name="plan" value="Premium Plan" id="premium">
+            <label for="premium">Premium Plan - $12/month</label><br>
+            <input type="radio" name="plan" value="Family Plan" id="family">
+            <label for="family">Family Plan - $25/month</label><br>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+    
+    <script>
+    document.getElementById('subscriptionForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        const plan = document.querySelector('input[name="plan"]:checked').value;
+    
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) {
+            alert('You must be logged in to subscribe.');
+            return;
+        }
+    
+        try {
+            const response = await fetch('/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: currentUser.username, subscription: plan }),
+            });
+    
+            if (response.ok) {
+                alert('Subscription updated successfully.');
+                currentUser.subscription = plan;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            } else {
+                alert('Failed to update subscription.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+    </script>
+
 
         <!-- Footer -->
         <script src="../footer.js"></script>
