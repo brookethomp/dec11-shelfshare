@@ -23,6 +23,22 @@
         #selectedSpot {
             text-align: center
         }
+        #SwapDone {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #3A7CA5;
+            color: #FFFFFF;
+            font-size: 18px;
+            text-align: center;
+            text-decoration: none;
+        }
+        #SwapDone:hover {
+            background-color: #2A5A7F;
+        }
 
         a:link, a:visited {
           color: #3A7CA5;
@@ -55,6 +71,8 @@
         <div id="findAdd"></div>
     </div>
 
+    <!-- Footer -->
+    <script src="footer.js"></script>
 
     <script>
         userBook();
@@ -75,13 +93,24 @@
 
                 const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedLocation)}`;
                 document.getElementById('selectedSpot').innerHTML = `<p> Click <a href="${mapsUrl}" target="_blank">HERE</a> to get directions to the SwapSpot</p>`;
+
+                const form = document.createElement("form");
+                form.id = "swapForm";
+                form.action = "home.html";
+                form.method = "get";
+                
+                const submit = document.createElement("button");
+                submit.type = "submit"; 
+                submit.textContent = "Mark Swap Complete"; 
+                submit.id = "SwapDone";
+                form.appendChild(submit);
+
+                document.body.appendChild(form);
             } else {
                 alert("Error did not swap");
                 return;
             }
         }
-       
     </script>
-    <script src="footer.js"></script>
 </body>
 </html>
