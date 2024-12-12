@@ -112,12 +112,15 @@
                 
                 var space = document.createElement("br");
                 form.appendChild(space);
-                
-                const submit = document.createElement("button");
+
+                let booksArray = 'books';
+                if (currentUser.hasOwnProperty(booksArray) && currentUser.books.length != 0) {
+                    const submit = document.createElement("button");
                     submit.type = "submit"; 
                     submit.textContent = "Swap Book"; 
                     submit.id = "SwapBook";
                     form.appendChild(submit);
+                }
 
                 searchedBooksInfo.appendChild(form);
             });
