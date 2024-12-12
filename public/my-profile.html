@@ -273,6 +273,13 @@
                     booksList.appendChild(li);
                 });
             }
+            function logout() {
+            // Remove the current user from localStorage
+            localStorage.removeItem('currentUser');
+            
+            // Redirect to login page
+            window.location.href = 'https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html';
+        }
         </script>
     </body>
 </html>
