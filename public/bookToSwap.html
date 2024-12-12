@@ -70,7 +70,7 @@
                     form.method = "get";
                 (currentUser.books || []).forEach(book => {
                     var bookChoice = document.createElement("div");
-                    bookChoice.innerHTML = "<input type='radio' id='" + book + "' name='swapBook' value='" + book + "' required><label for='" + book + "'> " + book + "</label>";
+                    bookChoice.innerHTML = "<input type='radio' id='" + book + "' name='swapBook' value='" + book + "[.p]" + selectedBook + "[.p]" + selectedLocation + "' required><label for='" + book + "'> " + book + "</label>";
                     form.appendChild(bookChoice);
                 });
                 const submit = document.createElement("button");
