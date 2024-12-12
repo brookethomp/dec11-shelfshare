@@ -220,6 +220,7 @@
                 document.getElementById('editProfileName').value = currentUser.name || '';
                 document.getElementById('editProfileBio').value = currentUser.bio || '';
                 document.getElementById('editProfileAddress').value = currentUser.address || '';
+                const books = currentUser.books || [];
                 document.getElementById('editProfileBooks').value = (currentUser.books || []).join(', ');
             }
     
@@ -227,7 +228,7 @@
                 const name = document.getElementById('editProfileName').value;
                 const bio = document.getElementById('editProfileBio').value;
                 const address = document.getElementById('editProfileAddress').value;
-                const books = document.getElementById('editProfileBooks').value.trim().split(',');
+                const books = document.getElementById('editProfileBooks').value.trim().split(',').map(book => book.trim());
 
                 if (!name || !bio || !address || !books) {
                     alert('Please fill out all fields.');
@@ -264,7 +265,8 @@
                 document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
                 document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
                 document.getElementById('viewProfileAddress').innerText = currentUser.address || 'No address set';
-                
+
+                const books = currentUser.books || [];
                 const booksList = document.getElementById('viewProfileBooks');
                 booksList.innerHTML = '';
                 (currentUser.books || []).forEach(book => {
