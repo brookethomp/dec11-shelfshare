@@ -29,7 +29,7 @@
         <div id="viewProfileName"></div>
         <div id="viewProfileBio"></div>
         <div id="viewProfileAddress"></div>
-        <div id="viewProfileBooks"></div>
+        <div id="chooseWhich"></div>
         <div id="searchedBooks"></div>
     </div>
 
@@ -61,7 +61,8 @@
                     return;
                 }
                 // Display the user's profile
-                document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
+                document.getElementById('viewProfileName').innerText = "Your username: " + currentUser.name || 'No name set';
+                document.getElementById('chooseWhich').innerText = "<h2>Choose a book to swap with: </h2>";
                 var searchedBooksInfo = document.getElementById("searchedBooks");
 
                 const form = document.createElement("form");
