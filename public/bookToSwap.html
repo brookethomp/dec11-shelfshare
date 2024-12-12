@@ -21,6 +21,8 @@
     <div id="viewProfileBio"></div>
     <div id="viewProfileAddress"></div>
     <div id="viewProfileBooks"></div>
+    <div id="searchedBooks"></div>
+    
 
     <script>
         userBook();
@@ -53,6 +55,7 @@
                 document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
                 document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
                 document.getElementById('viewProfileAddress').innerText = currentUser.address || 'No address set';
+                var searchedBooksInfo = document.getElementById("searchedBooks");
 
                 const form = document.createElement("form");
                     form.id = "booksForm";
