@@ -23,9 +23,10 @@
         #selectedSpot {
             text-align: center
         }
+        /* For if swap completed button is added
         #SwapDone {
             display: block;
-            width: 250px;
+            width: 220px;
             margin: 20px auto;
             border: none;
             border-radius: 5px;
@@ -39,6 +40,7 @@
         #SwapDone:hover {
             background-color: #2A5A7F;
         }
+        */
 
         a:link, a:visited {
           color: #3A7CA5;
@@ -59,9 +61,10 @@
         }
     </style>
     
-        <!-- Header -->
+    <!-- Header -->
     <script src="header.js"></script>
 </head>
+    
 <body>
     <br><br>
     <h1 style="text-align: center;">Swap Confirmation</h1>
@@ -94,6 +97,7 @@
                 const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedLocation)}`;
                 document.getElementById('selectedSpot').innerHTML = `<p> Click <a href="${mapsUrl}" target="_blank">HERE</a> to get directions to the SwapSpot</p>`;
 
+                /* For if swap completed button is added
                 const form = document.createElement("form");
                 form.id = "swapForm";
                 form.action = "home.html";
@@ -110,15 +114,18 @@
                 submit.addEventListener('click', function () {
                     completeSwap(yourBook, selectedBook);
                 });
+                */
             } else {
                 alert("Error did not swap");
                 return;
             }
         }
 
+        /* For if swap completed button is added
         async function completeSwap(yourBook, selectedBook) {
             
         }
+        */
     </script>
 </body>
 </html>
