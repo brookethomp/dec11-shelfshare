@@ -39,6 +39,22 @@
             .edit-btn {
                 margin: 20px auto;
             }
+            .logout-btn {
+                display: block;
+                width: 150px;
+                border: none;
+                border-radius: 5px;
+                padding: 10px;
+                background-color: #D57A6E;
+                color: #FFFFFF;
+                font-size: 18px;
+                text-align: center;
+                text-decoration: none;
+                margin: 20px auto;
+            }
+            .logout-btn:hover {
+                background-color: #8A4534;
+            }
             .cancel-btn {
                 margin-top: 10px;
                 display: inline-block;
@@ -104,22 +120,6 @@
             input[type="checkbox"] + label {
                 color: #4C4C4C;
             }
-            .logout-btn {
-                display: block;
-                width: 150px;
-                border: none;
-                border-radius: 5px;
-                padding: 10px;
-                background-color: #B75F52;
-                color: #FFFFFF;
-                font-size: 18px;
-                text-align: center;
-                text-decoration: none;
-                margin: 20px auto;
-            }
-            .logout-btn:hover {
-                background-color: #8A4534;
-            }
 
             @media (max-width: 600px) {
                 .cancel-btn {
@@ -149,8 +149,10 @@
                 </div>
                 <!-- Edit Profile Button -->
                 <button onclick="showEditProfile()" class="edit-btn">Edit Profile</button>
-                <button id="logoutButton" class="logout-btn">Log Out</button>
             </div>
+
+            <!-- Logout Button -->
+            <button id="logoutButton" class="logout-btn">Log Out</button>
         </div>
 
         <div id="profileEdit" style="display: none">
