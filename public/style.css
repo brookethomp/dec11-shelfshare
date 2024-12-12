@@ -9,7 +9,7 @@
 }
 .secondary-navigation {
     display: inline-grid;
-    grid-template-columns: 60% 37.5% 2.5%; /* space, menu, space*/
+    grid-template-columns: 80% 17.5% 2.5%; /* space, menu, space*/
     align-items: center;
     box-sizing: border-box;
     height: 50px;
@@ -230,7 +230,7 @@ select {
         padding: 0;
     }
     .header {
-        grid-template-columns: 2.5% 25% 65% 0% 5% 2.5%; /* space, logo, space, hidden menu, hamburger, space*/
+        grid-template-columns: 2.5% 25% 65% 0% 5% 2.5%; /* space, logo, space, hidden , hamburger, space*/
         height: 70px;
         padding-top: 10px;
         padding-bottom: 10px;
@@ -271,7 +271,7 @@ select {
         display: block;
         position: relative;
         width: 100%;
-        height: 260px;
+        height: 190px;
         border: none;
         padding: 10px;
         background-color: #3A7CA5;
