@@ -98,7 +98,7 @@ app.post('/update-profile', async (req, res) => {
   try {
     const result = await usersCollection.updateOne(
       { username }, // Find user by username
-      { $set: { name, bio, books, address } } // Update all fields
+      { $set: { name, bio, address, books } } // Update all fields
     );
 
     if (result.modifiedCount > 0) {
