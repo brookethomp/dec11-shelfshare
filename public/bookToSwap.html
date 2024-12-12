@@ -49,11 +49,27 @@
                     window.location.href = 'https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html'; // Redirect to login if not logged in
                     return;
                 }
-                alert("loggedin");
                 // Display the user's profile
                 document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
                 document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
                 document.getElementById('viewProfileAddress').innerText = currentUser.address || 'No address set';
+
+                const form = document.createElement("form");
+                    form.id = "booksForm";
+                    form.action = "bookToSwap.html";
+                    form.method = "get";
+                (currentUser.books || []).forEach(book => {
+                    var bookChoice = document.createElement("div");
+                    bookChoice.innerHTML = "<input type='radio' id='" + book + "' name='swapBook' value='" + book "' required><label for='" + book + "'> " + book + "</label>";
+                    form.appendChild(bookChoice);
+                });
+                const submit = document.createElement("button");
+                    submit.type = "submit"; 
+                    submit.textContent = "SwapBook"; 
+                    submit.id = "SwapBook";
+                    form.appendChild(submit);
+
+                searchedBooksInfo.appendChild(form);
             
                 const booksList = document.getElementById('viewProfileBooks');
                 booksList.innerHTML = '';
@@ -62,10 +78,8 @@
                     li.innerText = book;
                     booksList.appendChild(li);
                 });
+
                 
-            });
-            //document.getElementById('usersBooks').innerHTML = "<p>Choose one of you books to swap with:</p>" + currentUser;
-            
         }
        
     </script>
