@@ -50,7 +50,7 @@
 
                 // Generate Google Maps link
                 const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedLocation)}`;
-                document.getElementById('selectedValue').innerHTML += `<p><a href="${mapsUrl}" target="_blank">Get Directions</a></p>`;
+                document.getElementById('selectedValue').innerHTML += `<p> Click <a href="${mapsUrl}" target="_blank">HERE</a> to get directions to BookSwap Location</p>`;
             } else {
                 alert("Error did not swap");
                 return;
