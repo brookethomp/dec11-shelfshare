@@ -150,10 +150,48 @@
                 <!-- Edit Profile Button -->
                 <button onclick="showEditProfile()" class="edit-btn">Edit Profile</button>
             </div>
-
+        <p><strong>Subscription:</strong> <span id="viewSubscription"></span></p>
+<button id="unsubscribeButton" class="save-btn" style="display: none;">Unsubscribe</button>
             <!-- Logout Button -->
             <button id="logoutButton" class="logout-btn" onclick="logout()">Log Out</button>
         </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const subscriptionElement = document.getElementById('viewSubscription');
+    const unsubscribeButton = document.getElementById('unsubscribeButton');
+
+    if (currentUser.subscription) {
+        subscriptionElement.innerText = currentUser.subscription;
+        unsubscribeButton.style.display = 'block';
+    } else {
+        subscriptionElement.innerText = 'No subscription.';
+    }
+
+    unsubscribeButton.addEventListener('click', async () => {
+        try {
+            const response = await fetch('/unsubscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: currentUser.username }),
+            });
+
+            if (response.ok) {
+                alert('Unsubscribed successfully.');
+                currentUser.subscription = null;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                subscriptionElement.innerText = 'No subscription.';
+                unsubscribeButton.style.display = 'none';
+            } else {
+                alert('Failed to unsubscribe.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+});
+</script>
+
 
         <div id="profileEdit" style="display: none">
             <div class="content">
