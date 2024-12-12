@@ -25,7 +25,7 @@
         }
         #SwapDone {
             display: block;
-            width: 150px;
+            width: 250px;
             margin: 20px auto;
             border: none;
             border-radius: 5px;
@@ -105,11 +105,19 @@
                 submit.id = "SwapDone";
                 form.appendChild(submit);
 
-                document.body.appendChild(form);
+                document.querySelector('.content').appendChild(form);
+
+                submit.addEventListener('click', function () {
+                    completeSwap(yourBook, selectedBook);
+                });
             } else {
                 alert("Error did not swap");
                 return;
             }
+        }
+
+        async function completeSwap(yourBook, selectedBook) {
+            
         }
     </script>
 </body>
