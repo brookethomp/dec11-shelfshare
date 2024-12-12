@@ -17,6 +17,9 @@
     <h1>Selected Value</h1>
     <div id="selectedValue">No value selected.</div>
     <div id="usersBooks"></div>
+    <div id="viewProfileName"></div>
+    <div id="viewProfileBio"></div>
+    <div id="viewProfileAddress"></div>
 
     <script>
         userBook();
@@ -35,11 +38,30 @@
                 alert("You didn't select a valid book");
                 return;
             }
-            if (!currentUser) {
-                alert("notloggedin");
-            } else {
+
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                
+                if (!currentUser) {
+                    alert("notloggedin");
+                    window.location.href = 'https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html'; // Redirect to login if not logged in
+                    return;
+                }
                 alert("loggedin");
-            }
+                // Display the user's profile
+                document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
+                document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
+                document.getElementById('viewProfileAddress').innerText = currentUser.address || 'No address set';
+            
+                const booksList = document.getElementById('viewProfileBooks');
+                booksList.innerHTML = '';
+                (currentUser.books || []).forEach(book => {
+                    const li = document.createElement('li');
+                    li.innerText = book;
+                    booksList.appendChild(li);
+                });
+            });
             //document.getElementById('usersBooks').innerHTML = "<p>Choose one of you books to swap with:</p>" + currentUser;
             
         }
