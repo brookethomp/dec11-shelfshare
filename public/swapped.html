@@ -49,7 +49,7 @@
             if (information) {
                 let words = "<p>You are swapping <strong>" + yourBook + "</strong> for <strong>" + selectedBook + "</strong></p>";
                 document.getElementById('selectedValue').innerHTML = words;
-                document.getElementById('selectedValue').innerHTML += "Go to location: " + selectedLocation + " and swap you books!";
+                document.getElementById('selectedValue').innerHTML += "<p>Go to location: " + selectedLocation + " and swap you books!</p>";
             } else {
                 alert("Error did not swap");
                 return;
