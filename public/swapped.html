@@ -16,8 +16,14 @@
             margin: 20px 20% 10px 20%;
             padding: 30px;
             background-color: rgba(255, 255, 255, 0.3);
+            font-size: 16px;
+            line-height: 2;
         }
-        
+
+        #selectedSpot {
+            text-align: center
+        }
+
         a:link {
           color: #3A7CA5;
           background-color: transparent;
@@ -58,7 +64,7 @@
                 let words = "<p>You are swapping your copy of <strong>" + yourBook + "</strong></p>";
                 document.getElementById('selectedValue').innerHTML = words;
                 document.getElementById('selectedValue').innerHTML += "<p>You are picking up a copy of <strong>" + selectedBook + "</strong></p><br>";
-                document.getElementById('selectedValue').innerHTML += "<p>Go to location: <strong>" + selectedLocation + "</strong> to complete the swap!</p><br>";
+                document.getElementById('selectedValue').innerHTML += "<p>Go to SwapSpot <strong>" + selectedLocation + "</strong> to complete the swap!</p><br>";
 
                 const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedLocation)}`;
                 document.getElementById('selectedSpot').innerHTML = `<p> Click <a href="${mapsUrl}" target="_blank">HERE</a> to get directions to the SwapSpot</p>`;
