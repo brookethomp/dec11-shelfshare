@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ShelfShare | Choose Swap</title>
-    <link rel="icon" type="image/x-icon" href="icon.png">
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="icon" type="image/x-icon" href="../icon.png">
+    <link rel="stylesheet" href="../style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- For hamburger and social media icons -->
     <style>
         .content {
@@ -21,7 +21,7 @@
         #SwapBook {
             display: block;
             width: 150px;
-            margin: 20px auto;
+            margin: 20px auto 0px auto;
             border: none;
             border-radius: 5px;
             padding: 10px;
@@ -37,7 +37,7 @@
     </style>
     
     <!-- Header -->
-    <script src="header.js"></script>
+    <script src="../header.js"></script>
 </head>
     
 <body>
@@ -68,8 +68,8 @@
 
             // Display the value if it exists
             if (information) {
-                document.getElementById('selectedBook').innerHTML =  "<p>You selected: <strong>" + selectedBook + "</strong></p>";
-                document.getElementById('selectedLocation').innerHTML =  "<p>SwapSpot: <strong>" + selectedLocation + "</strong></p>";
+                document.getElementById('selectedBook').innerHTML =  "<p><strong>You selected: </strong>" + selectedBook + "</p>";
+                document.getElementById('selectedLocation').innerHTML =  "<p><strong>SwapSpot: </strong>" + selectedLocation + "</p>";
             } else {
                 alert("You didn't select a valid book");
                 return;
@@ -86,7 +86,7 @@
                 }
                 
                 // Display the user's profile
-                document.getElementById('viewProfileName').innerHTML = "<p>Your username: <strong>" + currentUser.username + "</strong></p>";
+                document.getElementById('viewProfileName').innerHTML = "<p><strong>Your username: </strong>" + currentUser.username + "</p>";
                 document.getElementById('chooseWhich').innerHTML = "<h2 style='text-align: center;'>Choose one of your books to swap: </h2>";
                 var searchedBooksInfo = document.getElementById("searchedBooks");
 
@@ -114,6 +114,6 @@
         }
        
     </script>
-    <script src="footer.js"></script>
+    <script src="../footer.js"></script>
 </body>
 </html>
