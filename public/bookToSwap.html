@@ -90,7 +90,7 @@
                 const currentUser = JSON.parse(localStorage.getItem('currentUser'));
                 
                 if (!currentUser) {
-                    alert("You need to Log in before you can BookSwap");
+                    alert("You need to log in before you can swap!");
                     window.location.href = 'https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html'; // Redirect to login if not logged in
                     return;
                 }
