@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", function() {
-    var header = document.createElement('header');
+document.addEventListener("DOMContentLoaded", function () {
+    const header = document.createElement('header');
     header.innerHTML = `
         <div class="top" id="top">
             <!-- Secondary navigation bar -->
@@ -8,13 +8,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 <div class="navbar">
                     <ul>
                         <li>
-                            <form action="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/find.html" id="search1"> <!-- May change page name -->
+                            <form action="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/find.html" id="search1"> 
                                 <input type="text" placeholder="Search books" name="search">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </li>
                         <li><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/subscription.html">Subscriptions</a></li>
-                        <li><strong><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html" id="loginProfile1">Log In</a></strong></li>
+                        <li><strong><a href="#" id="loginProfile">Log In</a></strong></li>
                     </ul>
                 </div>
                 <div style="min-width: 10px"></div>
@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         <li><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/contact.html">Contact</a></li>
                     </ul>
                 </div>
-                <div class="hamburger"> <!-- Hamburger menu -->
+                <div class="hamburger">
                     <a href="javascript:void(0);" class="icon" onclick="toggle()">
-                            <i class="fa fa-bars"></i>
+                        <i class="fa fa-bars"></i>
                     </a>
                 </div>
                 <div style="min-width: 10px"></div>
@@ -52,53 +52,46 @@ document.addEventListener("DOMContentLoaded", function() {
                 <br>
                 <a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/subscription.html">Subscriptions</a>
                 <br>
-                <a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html" id="loginProfile2"></a>
+                <a href="#" id="loginProfileMenu"></a>
                 <br>
-                <form action="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/find.html" id="search2"> <!-- May change page name -->
+                <form action="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/find.html" id="search2">
                     <input type="text" placeholder="Search books" name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
         </div>
 
-        <!-- Space under navigation bar -->
         <div class="blank-space"></div>
     `;
-    document.body.insertBefore(header, document.body.firstChild);
-});
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Show or hide search bar, depending on page
-    var page = window.location.pathname;
-    var search = document.getElementById("search1");
-    if (page === "/dec11-shelfshare/public/find.html" || page === "/dec11-shelfshare/public/swap.html") { // May change page names
-        search1.style.visibility = "hidden";
-    }
-    else {
-        search1.style.visibility = "visible";
-    }
+    document.body.insertBefore(header, document.body.firstChild);
 
     // Check if user is logged in
-    if (!currentUser) {
-        document.getElementById('loginProfile1').innerText = "Log In";
-        document.getElementById('loginProfile2').innerText = "Log In";
-    }
-    else { 
-        document.getElementById('loginProfile1').innerText = "Profile";
-        document.getElementById('loginProfile2').innerText = "Profile";
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const loginProfile = document.getElementById('loginProfile');
+    const loginProfileMenu = document.getElementById('loginProfileMenu');
+
+    if (currentUser) {
+        loginProfile.innerText = "Profile";
+        loginProfile.href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/my-profile.html";
+        loginProfileMenu.innerText = "Profile";
+        loginProfileMenu.href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/my-profile.html";
+    } else {
+        loginProfile.innerText = "Log In";
+        loginProfile.href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html";
+        loginProfileMenu.innerText = "Log In";
+        loginProfileMenu.href = "https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html";
     }
 });
 
-// Expand or collapse hamburger menu
 function toggle() {
-    var menu = document.getElementById("menu");
-    var top = document.getElementById("top");
+    const menu = document.getElementById("menu");
+    const top = document.getElementById("top");
     if (menu.className === "menu") {
         menu.className += " responsive";
         top.className += " responsive";
-    }
-    else {
+    } else {
         menu.className = "menu";
         top.className = "top";
     }
-};
+}
