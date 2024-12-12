@@ -22,7 +22,7 @@
     <script src="header.js"></script>
 </head>
 <body>
-    <h1>Books Swapped!</h1>
+    <h1 style="text-align: center;">Books Swapped!</h1>
     <div class="content">
         <div id="selectedValue">No value selected.</div>
         <div id="usersBooks"></div>
@@ -49,7 +49,7 @@
             if (information) {
                 let words = "<p>You are swapping <strong>" + yourBook + "</strong> for <strong>" + selectedBook + "</strong></p>";
                 document.getElementById('selectedValue').innerHTML = words;
-                document.getElementById('selectedValue').innerHTML += "<p>Go to location: " + selectedLocation + " and swap you books!</p>";
+                document.getElementById('selectedValue').innerHTML += "<p>Go to location: <strong>" + selectedLocation + "</strong> and swap you books!</p>";
             } else {
                 alert("Error did not swap");
                 return;
