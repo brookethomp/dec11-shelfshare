@@ -42,6 +42,7 @@
             .logout-btn {
                 display: block;
                 width: 150px;
+                margin: 30px auto;
                 border: none;
                 border-radius: 5px;
                 padding: 10px;
@@ -50,10 +51,9 @@
                 font-size: 18px;
                 text-align: center;
                 text-decoration: none;
-                margin: 20px auto;
             }
             .logout-btn:hover {
-                background-color: #8A4534;
+                background-color: #B75F52;
             }
             .cancel-btn {
                 margin-top: 10px;
@@ -277,6 +277,7 @@
                     booksList.appendChild(li);
                 });
             }
+            
             function logout() {
                 // Remove the current user from localStorage
                 localStorage.removeItem('currentUser');
@@ -284,7 +285,6 @@
                 // Redirect to login page
                 window.location.href = 'https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html';
             }
-
         </script>
     </body>
 </html>
