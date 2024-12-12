@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <div class="header">
                 <div style="min-width: 10px;"></div>
                 <a href="https://brookethomp.github.io/dec11-shelfshare"><img src="/logo.png" alt="Logo"></a>
+                <img class="content-image" src="logo.png" alt="Books" width="90%">
                 <div></div>
                 <div class="navbar">
                     <ul>
