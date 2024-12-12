@@ -22,8 +22,8 @@
     <script src="header.js"></script>
 </head>
 <body>
+    <h1 style="text-align: center;">Choose Swap</h1>
     <div class="content">
-        <h1>Choose Swap</h1>
         <div id="selectedValue">No value selected.</div>
         <div id="usersBooks"></div>
         <div id="viewProfileName"></div>
@@ -59,8 +59,8 @@
                 }
                 
                 // Display the user's profile
-                document.getElementById('viewProfileName').innerHTML = "Your username: " + currentUser.name;
-                document.getElementById('chooseWhich').innerHTML = "<h2>Choose one of your books to swap: </h2>";
+                document.getElementById('viewProfileName').innerHTML = "<p>Your username: <strong>" + currentUser.name + "</strong></p>";
+                document.getElementById('chooseWhich').innerHTML = "<h2 style='text-align: center;'>Choose one of your books to swap: </h2>";
                 var searchedBooksInfo = document.getElementById("searchedBooks");
 
                 const form = document.createElement("form");
