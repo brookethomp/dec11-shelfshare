@@ -47,19 +47,17 @@
 
         function userBook() {
             const params = new URLSearchParams(window.location.search);
-            var information = params.get('swapBook'); // Use the correct parameter name
+            var information = params.get('swapBook');
             information = information.split("[.p]");
             const yourBook = information[0];            
             const selectedBook = information[1];
             const selectedLocation = information[2];
 
-            // Display the value if it exists
             if (information) {
                 let words = "<p>You are swapping <strong>" + yourBook + "</strong> for <strong>" + selectedBook + "</strong></p>";
                 document.getElementById('selectedValue').innerHTML = words;
                 document.getElementById('selectedValue').innerHTML += "<p>Go to location: <strong>" + selectedLocation + "</strong> and swap your books!</p><br>";
 
-                // Generate Google Maps link
                 const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedLocation)}`;
                 document.getElementById('selectedValue').innerHTML += `<p> Click <a href="${mapsUrl}" target="_blank">HERE</a> to get directions to BookSwap Location</p>`;
             } else {
