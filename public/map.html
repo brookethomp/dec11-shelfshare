@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>ShelfShare | Book Map</title>
-        <link rel="icon" type="image/x-icon" href="../icon.png">
-        <link rel="stylesheet" href="../style.css"/>
+        <link rel="icon" type="image/x-icon" href="icon.png">
+        <link rel="stylesheet" href="style.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- For hamburger and social media icons -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
@@ -70,7 +70,7 @@
         </style>
 
         <!-- Header -->
-        <script src="../header.js"></script>
+        <script src="header.js"></script>
     </head>
 
     <body>
@@ -106,9 +106,6 @@
             </div>
         </div>
 
-        <!-- Footer -->
-        <script src="../footer.js"></script>
-
         <!-- leaflet: interactive map lib  -->
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
         <script>
@@ -122,17 +119,21 @@
             }).addTo(map);
 
            // Initialize book swap locations
-            var userInfo = [];
-            var swapLocations = [];
-    
-            fetch('/api/mapPage')
-            .then(response => response.json())
-            .then(data => {
-                userInfo = data;
-                userInfo.forEach(function(userStuff) {
-                    var bookInfo = {};
-    
-                    // Default location or geocode the address if it's available
+        var userInfo = [];
+        var swapLocations = [];
+
+
+        fetch('/api/mapPage')
+        .then(response => response.json())
+        .then(data => {
+            userInfo = data;
+            userInfo.forEach(function(userStuff) {
+                var bookInfo = {};
+
+                //check if they added books or not
+                let add = 'address';
+                let booksArray = 'books';
+                if (userStuff.hasOwnProperty(add) && userStuff.hasOwnProperty(booksArray)) {
                     if (userStuff.address == "") {
                         bookInfo = {
                             name: "Default",
@@ -141,7 +142,7 @@
                             lng: -71.12072 
                         };
                     } else {
-                        // Fetch the geolocation for the user's address
+                        //get lat and lng of location
                         fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(userStuff.address)}`)
                             .then(res => res.json())
                             .then(data => {
@@ -160,11 +161,11 @@
                                         lng: -71.12072 
                                     };
                                 }
-    
-                                // Add the location to the swapLocations array after geocoding
+
+                                //add location
                                 swapLocations.push(bookInfo);
-    
-                                // Add the marker only after adding to the array
+
+                                //Add the marker only after adding to the array
                                 booksHere = "<ul>";
                                 bookInfo.books.forEach(function(book) {
                                     booksHere += "<li>" + book + "</li>";
@@ -178,13 +179,13 @@
                             .catch(error => {
                                 console.error('Error geocoding the address:', error);
                             });
-                        return;  // Skip to the next iteration to avoid adding the location prematurely
+                        return;  
                     }
-    
-                    // Fallback to default location if address is empty
+
+                    //push info
                     swapLocations.push(bookInfo);
-    
-                    // Add book swap locations to the map immediately if no geocoding is needed
+
+                    //add bookswap
                     booksHere = "<ul>";
                     bookInfo.books.forEach(function(book) {
                         booksHere += "<li>" + book + "</li>";
@@ -194,11 +195,14 @@
                         .bindPopup("<h3>" + bookInfo.name + "</h3>" + booksHere)
                         .addTo(map);
                     markers.push(marker);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching book locations:', error);
+                }
             });
+        })
+        .catch(error => {
+            console.error('Error fetching book locations:', error);
+        });
+
+
 
             //where user is/inputed
             var locSelected = null;
@@ -215,7 +219,7 @@
                 popupAnchor: [1, -42] // Point from which the popup will open relative to the icon anchor
             });
 
-            // add bookswap locations to map
+            //add bookswap locations to map
             const markers = [];
             swapLocations.forEach(function(location) {
                 booksHere = "<ul>";
@@ -402,7 +406,7 @@
                 });
 
 
-                                if (booksSearchedFor.length > 0) {
+                if (booksSearchedFor.length > 0) {
 
                     const form = document.createElement("form");
                     form.id = "booksForm";
@@ -432,11 +436,17 @@
                     submit.textContent = "SwapBook"; 
                     submit.id = "SwapBook";
                     form.appendChild(submit);
+
+
+
                     searchedBooksInfo.appendChild(form);
                 } else {
                     searchedBooksInfo.innerHTML = "<p>No books found matching the search.</p>";
                 }
             }
         </script>
+
+        <!-- Footer -->
+        <script src="footer.js"></script>
     </body>
 </html>
