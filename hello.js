@@ -93,7 +93,7 @@ app.post('/login', async (req, res) => {
 
 
 app.post('/update-profile', async (req, res) => {
-  const { username, name, bio, books, address } = req.body;
+  const { username, name, bio, address, books } = req.body;
 
   try {
     const result = await usersCollection.updateOne(
