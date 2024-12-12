@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <!-- Navigation bar -->
             <div class="header">
                 <div style="min-width: 10px;"></div>
-                <a href="https://brookethomp.github.io/dec11-shelfshare"><img src="/logo.png" alt="Logo"></a>
+                <a href="https://brookethomp.github.io/dec11-shelfshare"><img src="/dec11-shelfshare/logo.png" alt="Logo"></a>
                 <div></div>
                 <div class="navbar">
                     <ul>
