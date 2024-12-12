@@ -5,32 +5,56 @@
     <meta name="description" content="ShelfShare is a community-based platform that allows local book lovers to easily exchange books with each other through a flexible subscription model, promoting affordable reading and sustainability.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ShelfShare | ChooseSwap</title>
+    <title>ShelfShare | Choose Swap</title>
     <link rel="icon" type="image/x-icon" href="icon.png">
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- For hamburger and social media icons -->
     <style>
         .content {
-                border: 2px solid #4C4C4C;
-                border-radius: 5px;
-                margin: 20px 20% 10px 20%;
-                padding: 30px;
-                background-color: rgba(255, 255, 255, 0.3);
+            border: 2px solid #4C4C4C;
+            border-radius: 5px;
+            margin: 20px 20% 10px 20%;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        #SwapBook {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #3A7CA5;
+            color: #FFFFFF;
+            font-size: 18px;
+            text-align: center;
+            text-decoration: none;
+        }
+        #SwapBook:hover {
+            background-color: #2A5A7F;
         }
     </style>
-        <!-- Header -->
+    
+    <!-- Header -->
     <script src="header.js"></script>
 </head>
+    
 <body>
     <br><br>
     
     <h1 style="text-align: center;">Choose Swap</h1>
     <div class="content">
         <div id="selectedValue">No value selected.</div>
+        <br><br>
         <div id="usersBooks"></div>
+        <br><br>
         <div id="viewProfileName"></div>
+        <br><br>
         <div id="chooseWhich"></div>
+        <br><br>
         <div id="searchedBooks"></div>
+        <br><br>
     </div>
 
     <script>
@@ -62,7 +86,7 @@
                 }
                 
                 // Display the user's profile
-                document.getElementById('viewProfileName').innerHTML = "<p>Your username: <strong>" + currentUser.name + "</strong></p>";
+                document.getElementById('viewProfileName').innerHTML = "<p>Your username: <strong>" + currentUser.username + "</strong></p>";
                 document.getElementById('chooseWhich').innerHTML = "<h2 style='text-align: center;'>Choose one of your books to swap: </h2>";
                 var searchedBooksInfo = document.getElementById("searchedBooks");
 
@@ -81,7 +105,7 @@
                 
                 const submit = document.createElement("button");
                     submit.type = "submit"; 
-                    submit.textContent = "SwapBook"; 
+                    submit.textContent = "Swap Book"; 
                     submit.id = "SwapBook";
                     form.appendChild(submit);
 
