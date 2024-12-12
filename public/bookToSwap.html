@@ -20,6 +20,7 @@
     <div id="viewProfileName"></div>
     <div id="viewProfileBio"></div>
     <div id="viewProfileAddress"></div>
+    <div id="viewProfileBooks"></div>
 
     <script>
         userBook();
@@ -44,7 +45,7 @@
                 const currentUser = JSON.parse(localStorage.getItem('currentUser'));
                 
                 if (!currentUser) {
-                    alert("notloggedin");
+                    alert("You need to Log in before you can BookSwap");
                     window.location.href = 'https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/login.html'; // Redirect to login if not logged in
                     return;
                 }
