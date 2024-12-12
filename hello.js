@@ -81,8 +81,9 @@ app.post('/login', async (req, res) => {
         username: user.username,
         name: user.name,
         bio: user.bio,
-        address: user.address || '', // Include address
-        books: user.books || [] // Include books
+        address: user.address || '',
+        books: user.books || [],
+        subscription: user.subscription || ''
       }
     });
   } catch (error) {
@@ -96,8 +97,8 @@ app.post('/update-profile', async (req, res) => {
 
   try {
     const result = await usersCollection.updateOne(
-      { username }, // Find user by username
-      { $set: { name, bio, address, books } } // Update all fields
+      { username },
+      { $set: { name, bio, address, books } }
     );
 
     if (result.modifiedCount > 0) {
@@ -111,111 +112,46 @@ app.post('/update-profile', async (req, res) => {
   }
 });
 
-app.get('/get-nearby-users', async (req, res) => {
-    const { lat, lng, radius } = req.query;
-
-    if (!lat || !lng || !radius) {
-        return res.status(400).send('Latitude, longitude, and radius are required.');
-    }
+// Subscription endpoint
+app.post('/subscribe', async (req, res) => {
+    const { username, subscription } = req.body;
 
     try {
-        const nearbyUsers = await usersCollection.aggregate([
-            {
-                $geoNear: {
-                    near: { type: "Point", coordinates: [parseFloat(lng), parseFloat(lat)] },
-                    distanceField: "distance",
-                    maxDistance: parseFloat(radius) * 1609.34, // Convert miles to meters
-                    spherical: true
-                }
-            },
-            {
-                $project: {
-                    username: 1,
-                    name: 1,
-                    address: 1,
-                    books: 1,
-                    distance: 1
-                }
-            }
-        ]).toArray();
+        const result = await usersCollection.updateOne(
+            { username },
+            { $set: { subscription } }
+        );
 
-        res.status(200).json(nearbyUsers);
-    } catch (error) {
-        console.error('Error fetching nearby users:', error);
-        res.status(500).send('An error occurred while fetching nearby users.');
-    }
-});
-
-app.get('/get-swap-locations', async (req, res) => {
-    const { lat, lng, radius } = req.query;
-
-    if (!lat || !lng || !radius) {
-        return res.status(400).send('Latitude, longitude, and radius are required.');
-    }
-
-    try {
-        const users = await usersCollection.aggregate([
-            {
-                $geoNear: {
-                    near: { type: "Point", coordinates: [parseFloat(lng), parseFloat(lat)] },
-                    distanceField: "distance",
-                    maxDistance: parseFloat(radius) * 1609.34, // Convert miles to meters
-                    spherical: true
-                }
-            },
-            {
-                $project: {
-                    username: 1,
-                    name: 1,
-                    books: 1,
-                    location: 1,
-                    distance: 1
-                }
-            }
-        ]).toArray();
-
-        res.status(200).json(users);
-    } catch (error) {
-        console.error('Error fetching nearby users:', error);
-        res.status(500).send('An error occurred while fetching nearby users.');
-    }
-});
-
-// Search endpoint
-app.get('/search', async (req, res) => {
-  const searchTerm = req.query.search;
-  if (!searchTerm) {
-    return res.status(400).send('Search term is required.');
-  }
-  console.log("Getting to search endpoint");
-
-  try {
-    const db = client.db('final');
-    const usersCollection = db.collection('users'); // Query the 'users' collection
-
-    // Search for users whose books match the search term
-    const results = await usersCollection.aggregate([
-      { $match: { books: { $elemMatch: { $regex: searchTerm, $options: 'i' } } } },
-      {
-        $project: {
-          username: 1,
-          name: 1,
-          books: {
-            $filter: {
-              input: "$books",
-              as: "book",
-              cond: { $regexMatch: { input: "$$book", regex: searchTerm, options: "i" } }
-            }
-          }
+        if (result.modifiedCount > 0) {
+            res.status(200).send('Subscription updated successfully.');
+        } else {
+            res.status(400).send('Failed to update subscription.');
         }
-      }
-    ]).toArray();
-    console.log("got search query, sending results as json");
-    res.status(200).json(results);
-  } catch (error) {
-    console.error('Error fetching book search results:', error);
-    res.status(500).send('An error occurred while searching for books.');
-  }
+    } catch (error) {
+        console.error('Error updating subscription:', error);
+        res.status(500).send('An error occurred while updating the subscription.');
+    }
+});
+
+// Unsubscribe endpoint
+app.post('/unsubscribe', async (req, res) => {
+    const { username } = req.body;
+
+    try {
+        const result = await usersCollection.updateOne(
+            { username },
+            { $unset: { subscription: "" } }
+        );
+
+        if (result.modifiedCount > 0) {
+            res.status(200).send('Unsubscribed successfully.');
+        } else {
+            res.status(400).send('Failed to unsubscribe.');
+        }
+    } catch (error) {
+        console.error('Error unsubscribing:', error);
+        res.status(500).send('An error occurred while unsubscribing.');
+    }
 });
 
 // Start server
