@@ -64,24 +64,29 @@
             alert(await response.text());
         }
 
-        async function login() {
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
+    async function login() {
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
 
-            const response = await fetch('/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password }),
-            });
-            const data = await response.json();
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password }),
+        });
 
-            if (response.ok) {
-                localStorage.setItem('currentUser', JSON.stringify(data.user));
-                window.location.href = 'my-profile.html';
+        const data = await response.json();
+
+        if (response.ok) {
+            localStorage.setItem('currentUser', JSON.stringify(data.user));
+            window.location.href = 'my-profile.html';
+        } else {
+            if (response.status === 404) { // Assuming the server returns 404 for user not found
+                alert('User not found. Please register to create an account.');
             } else {
                 alert(data.message || 'Login failed');
             }
         }
+    }
     </script>
     <script src="footer.js"></script>
 </body>
