@@ -78,6 +78,9 @@
             if (response.ok) {
                 localStorage.setItem('currentUser', JSON.stringify(data.user));
                 window.location.href = 'my-profile.html';
+            } else if (response.status === 409) { // Username already taken
+                const data = await response.json();
+                alert(data.message || 'Username is already taken.');
             } else {
                 alert(data.message || 'Login failed');
             }
