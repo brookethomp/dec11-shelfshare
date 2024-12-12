@@ -72,7 +72,7 @@ app.post('/login', async (req, res) => {
     const user = await usersCollection.findOne({ username });
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.status(400).send('Invalid username or password.');
+      return res.status(400).json('Invalid username or password.');
     }
 
     res.status(200).json({
@@ -87,10 +87,9 @@ app.post('/login', async (req, res) => {
     });
   } catch (error) {
     console.error('Error during login:', error);
-    res.status(500).send('An error occurred while logging in.');
+    res.status(500).json('An error occurred while logging in.');
   }
 });
-
 
 app.post('/update-profile', async (req, res) => {
   const { username, name, bio, address, books } = req.body;
@@ -146,6 +145,7 @@ app.get('/get-nearby-users', async (req, res) => {
         res.status(500).send('An error occurred while fetching nearby users.');
     }
 });
+
 app.get('/get-swap-locations', async (req, res) => {
     const { lat, lng, radius } = req.query;
 
@@ -180,9 +180,6 @@ app.get('/get-swap-locations', async (req, res) => {
         res.status(500).send('An error occurred while fetching nearby users.');
     }
 });
-
-
-
 
 // Search endpoint
 app.get('/search', async (req, res) => {
