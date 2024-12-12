@@ -64,13 +64,11 @@
                 }
                 // Display the user's profile
                 document.getElementById('viewProfileName').innerText = currentUser.name || 'No name set';
-                document.getElementById('viewProfileBio').innerText = currentUser.bio || 'No bio set';
-                document.getElementById('viewProfileAddress').innerText = currentUser.address || 'No address set';
                 var searchedBooksInfo = document.getElementById("searchedBooks");
 
                 const form = document.createElement("form");
                     form.id = "booksForm";
-                    form.action = "bookToSwap.html";
+                    form.action = "swapped.html";
                     form.method = "get";
                 (currentUser.books || []).forEach(book => {
                     var bookChoice = document.createElement("div");
