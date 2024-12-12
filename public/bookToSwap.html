@@ -63,6 +63,7 @@
         <div id="usersBooks"></div>
         <div id="viewProfileName"></div>
         <br>
+        <div id="needBooks"></div>
         <div id="chooseWhich"></div>
         <div id="searchedBooks"></div>
     </div>
@@ -120,6 +121,8 @@
                     submit.textContent = "Swap Book"; 
                     submit.id = "SwapBook";
                     form.appendChild(submit);
+                } else {
+                    document.getElementById('needBooks').innerHTML = "<p>You need to add books to swap with in you account before you can swap books!</p>";
                 }
 
                 searchedBooksInfo.appendChild(form);
