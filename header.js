@@ -7,12 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div style="min-width: 10px;"></div>
                 <div class="navbar">
                     <ul>
-                        // <li>
-                        //     <form action="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/find.html" id="search1"> 
-                        //         <input type="text" placeholder="Search books" name="search">
-                        //         <button type="submit"><i class="fa fa-search"></i></button>
-                        //     </form>
-                        // </li>
+                    <!--
+                        <li>
+                            <form action="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/find.html" id="search1"> 
+                                <input type="text" placeholder="Search books" name="search">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </li>
+                    -->
                         <li><a href="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/subscription.html">Subscriptions</a></li>
                         <li><strong><a href="#" id="loginProfile">Log In</a></strong></li>
                     </ul>
@@ -54,10 +56,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 <br>
                 <a href="#" id="loginProfileMenu"></a>
                 <br>
+                <!--
                 // <form action="https://dec11-shelfshare-d2a5bdd1bfe2.herokuapp.com/find.html" id="search2">
                 //     <input type="text" placeholder="Search books" name="search">
                 //     <button type="submit"><i class="fa fa-search"></i></button>
-                // </form>
+                // </form> -->
             </div>
         </div>
 
