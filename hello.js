@@ -26,7 +26,7 @@ client.connect().then(() => {
 
 // Serve the login page as default
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
 // Serve the map page
