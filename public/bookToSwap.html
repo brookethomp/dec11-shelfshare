@@ -9,19 +9,29 @@
     <link rel="icon" type="image/x-icon" href="icon.png">
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- For hamburger and social media icons -->
-
+    <style>
+        .content {
+                border: 2px solid #4C4C4C;
+                border-radius: 5px;
+                margin: 20px 20% 10px 20%;
+                padding: 30px;
+                background-color: rgba(255, 255, 255, 0.3);
+        }
+    </style>
         <!-- Header -->
     <script src="header.js"></script>
 </head>
 <body>
     <h1>Selected Value</h1>
-    <div id="selectedValue">No value selected.</div>
-    <div id="usersBooks"></div>
-    <div id="viewProfileName"></div>
-    <div id="viewProfileBio"></div>
-    <div id="viewProfileAddress"></div>
-    <div id="viewProfileBooks"></div>
-    <div id="searchedBooks"></div>
+    <div class="content">
+        <div id="selectedValue">No value selected.</div>
+        <div id="usersBooks"></div>
+        <div id="viewProfileName"></div>
+        <div id="viewProfileBio"></div>
+        <div id="viewProfileAddress"></div>
+        <div id="viewProfileBooks"></div>
+        <div id="searchedBooks"></div>
+    </div>
     
 
     <script>
@@ -74,16 +84,6 @@
 
                 searchedBooksInfo.appendChild(form);
             
-
-                // const booksList = document.getElementById('viewProfileBooks');
-                // booksList.innerHTML = '';
-                // (currentUser.books || []).forEach(book => {
-                //     const li = document.createElement('li');
-                //     li.innerText = book;
-                //     booksList.appendChild(li);
-                // });
-
-                
             });
         }
        
