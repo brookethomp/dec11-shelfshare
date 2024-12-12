@@ -23,10 +23,10 @@
             }
 
             .extra-space {
-                height: 250px; /* Adjust height as needed for blank space */
+                height: 850px; /* Adjust height as needed for blank space */
             }
 
-            @media (max-width: 100px) {
+            @media (max-width: 600px) {
                 .content {
                     padding: 20px 50px 20px 50px;
                 }
@@ -59,31 +59,41 @@
     <div class="extra-space"></div>
 
     <script>
-    async function register() {
-        const username = document.getElementById('regUsername').value;
-        const password = document.getElementById('regPassword').value;
+        async function register() {
+            const username = document.getElementById('regUsername').value;
+            const password = document.getElementById('regPassword').value;
 
-        try {
             const response = await fetch('/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),
             });
+            alert(await response.text());
+        }
+
+        async function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const data = await response.json();
 
             if (response.ok) {
-                alert('Registration successful! You can now log in.');
-            } else if (response.status === 409) { // Username already taken
-                const data = await response.json();
-                alert(data.message || 'Username is already taken.');
+                localStorage.setItem('currentUser', JSON.stringify(data.user));
+                window.location.href = 'my-profile.html';
             } else {
-                const data = await response.json();
-                alert(data.message || 'Registration failed. Please try again.');
+                if (response.status === 404) { // Assuming the server returns 404 for user not found
+                    alert('User not found. Please register to create an account.');
+                } else {
+                    alert(data.message || 'Login failed');
+                }
             }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again later.');
         }
-    }
     </script>
     <script src="footer.js"></script>
 </body>
