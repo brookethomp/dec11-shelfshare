@@ -45,16 +45,15 @@
     
     <h1 style="text-align: center;">Choose Swap</h1>
     <div class="content">
-        <div id="selectedValue">No value selected.</div>
-        <br><br>
+        <div id="selectedBook">No value selected.</div>
+        <div id="selectedLocation">No value selected.</div>
         <div id="usersBooks"></div>
-        <br><br>
         <div id="viewProfileName"></div>
         <br><br>
         <div id="chooseWhich"></div>
-        <br><br>
+        <br>
         <div id="searchedBooks"></div>
-        <br><br>
+        <br>
     </div>
 
     <script>
@@ -69,7 +68,8 @@
 
             // Display the value if it exists
             if (information) {
-                document.getElementById('selectedValue').innerHTML =  "<p>You selected: <strong>" + selectedBook + "</strong> At SwapSpot: <strong>" + selectedLocation + "</strong></p>";
+                document.getElementById('selectedBook').innerHTML =  "<p>You selected: <strong>" + selectedBook + "</strong></p>";
+                document.getElementById('selectedLocation').innerHTML =  "<p>SwapSpot: <strong>" + selectedLocation + "</strong></p>";
             } else {
                 alert("You didn't select a valid book");
                 return;
