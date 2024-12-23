@@ -41,6 +41,9 @@
                 color: #4C4C4C;
                 font-size: 14px;
             }
+            .locationInfo {
+                margin-bottom: 10px;
+            }
 
             #map {
                 z-index: 0;
@@ -55,7 +58,7 @@
             #SwapBook {
                 display: block;
                 width: 150px;
-                margin: 20px auto;
+                margin: 10px auto 20px auto;
                 border: none;
                 border-radius: 5px;
                 padding: 10px;
@@ -361,7 +364,7 @@
                 var radius = document.getElementById("radius").value * 1609.34;
                 var searchedBooksInfo = document.getElementById("searchedBooks");
 
-                document.getElementById("searchedBooksHeader").innerHTML = '<h2>Searched Book:</h2>';
+                document.getElementById("searchedBooksHeader").innerHTML = '<h2>Select a book to swap:</h2>';
                 
                 searchedBooksInfo.innerHTML = ""; //resets
 
@@ -431,20 +434,22 @@
 
                     booksSearchedFor.forEach(function(foundB) {
                         if (!(form.innerHTML.includes(foundB.loc))) {
+                            var locationInfo = document.createElement("div class='locationInfo'");
+                            form.appendChild(locationInfo);
                             var locationHeader = document.createElement("h3");
                             locationHeader.innerHTML = foundB.loc;
-                            form.appendChild(locationHeader);
+                            locationInfo.appendChild(locationHeader);
 
                             if (!(foundB.dist == Infinity)) {
                                 var howFar = document.createElement("div");
                                 howFar.innerHTML = "<strong> Distance to Location: </strong> " + foundB.dist + " Miles <br>";
-                                form.appendChild(howFar);
+                                locationInfo.appendChild(howFar);
                             }
                         }
 
                         var bookChoice = document.createElement("div");
                         bookChoice.innerHTML = "<input type='radio' id='" + foundB.name + "' name='swapBook' value='" + foundB.name + " [.p] "+ foundB.loc + "' required><label for='" + foundB.name + "'> " + foundB.name + "</label>";
-                        form.appendChild(bookChoice);
+                        locationInfo.appendChild(bookChoice);
                     });
 
                     const submit = document.createElement("button");
@@ -452,8 +457,6 @@
                     submit.textContent = "Swap Book"; 
                     submit.id = "SwapBook";
                     form.appendChild(submit);
-
-
 
                     searchedBooksInfo.appendChild(form);
                 } else {
